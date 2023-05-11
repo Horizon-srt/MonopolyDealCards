@@ -1,0 +1,1 @@
+Monopoly Deal Card for SE in BDIC
