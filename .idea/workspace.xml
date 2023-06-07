@@ -1,13 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="d329687e-f78e-4227-910b-777609a43178" name="更改" comment="" />
+    <list default="true" id="d329687e-f78e-4227-910b-777609a43178" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/KotlinJavaRuntime.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Core/GameController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Core/IGameController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Core/ITerminalView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Core/TerminalView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Cards/iface/IActionCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Cards/iface/ICard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Cards/iface/IMoneyCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Cards/iface/IPropertyCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Cards/impl/ActionCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Cards/impl/Card.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Cards/impl/DealBreakerCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Cards/impl/DebtCollectorCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Cards/impl/DoubleTheRentCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Cards/impl/ForceDealCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Cards/impl/HotelCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Cards/impl/HouseCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Cards/impl/ItsMyBirthdayCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Cards/impl/JustSayNoCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Cards/impl/MoneyCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Cards/impl/NormalPropertyCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Cards/impl/PassGoCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Cards/impl/PropertyCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Cards/impl/PropertyWildCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Cards/impl/RentActionCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Cards/impl/SlyDealCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Piles/iface/IAllPile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Piles/iface/IBankPile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Piles/iface/IDiscardPile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Piles/iface/IHandPile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Piles/iface/IPile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Piles/iface/IPropertyPile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Piles/impl/AllPile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Piles/impl/BankPile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Piles/impl/DiscardPile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Piles/impl/HandPile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Piles/impl/PropertyPile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Player/iface/IPlayer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Modules/Player/impl/Player.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/config/config.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/Color.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/Type.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Kotlin Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="2Pde88VCw1kFd2vcqCy9RShxsd1" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -15,9 +84,18 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/srt/Documents/MonopolyDealCards/MonopolyDealCards/src/Modules/Player"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Modules/Player" />
+      <recent name="$PROJECT_DIR$/src/Modules/Piles" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">
