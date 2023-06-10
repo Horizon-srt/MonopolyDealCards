@@ -11,4 +11,5 @@ public class PropertyWildCard extends PropertyCard{
         super(name, value);
 
     }
+
 }

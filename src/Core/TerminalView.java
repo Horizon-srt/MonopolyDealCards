@@ -146,4 +146,5 @@ public class TerminalView implements ITerminalView {
         System.out.println("Can not find cards config, please check config file in path 'src/config'");
         System.out.println("Error with: " + e.toString());
     }
+
 }

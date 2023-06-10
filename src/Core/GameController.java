@@ -205,7 +205,7 @@ public class GameController implements IGameController {
                         tv.wrongCardType();
                         c = tv.selectCard(p.getHp());
                     }
-                    ((ActionCard) c).use(this);
+                    ((ActionCard) c).use(this, p);
                 }
             }
             n++;
