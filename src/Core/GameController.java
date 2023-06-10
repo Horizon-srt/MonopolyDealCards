@@ -61,7 +61,6 @@ public class GameController implements IGameController {
             tv.wrongFile(e);
         }
         ap.arrangement();
-        System.out.println(ap.size());
         tv.getRules();
     }
 
