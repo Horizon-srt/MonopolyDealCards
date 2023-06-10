@@ -12,8 +12,12 @@ public class ForceDealCard extends ActionCard{
     @Override
     public void use(GameController g, Player p) {
         TerminalView tv = g.tv;
-        Player q = tv.getTargetPlayer(p);
-        Card[] cards = g.tv.rent(p,q,this.getValue());
-
+        Player q = tv.getTargetplayer();
+        PropertyCard targetProperty = tv.slyForceDealTargetProperty();
+        PropertyCard ownProperty = tv.forceDealOwnProperty();
+        q.getPp().removeCard(targetProperty);
+        p.getPp().removeCard(ownProperty);
+        q.getPp().setCard(ownProperty);
+        p.getPp().setCard(targetProperty);
     }
 }
