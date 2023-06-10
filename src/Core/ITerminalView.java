@@ -8,4 +8,7 @@ public interface ITerminalView {
     public Card[] rent(Player p, Player q,int value);
 
     public Player getTargetPlayer(Player p);
+
+    // 得到玩家想要加入到对应财产堆的序号
+    public int getIndex();
 }
