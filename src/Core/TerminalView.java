@@ -3,9 +3,11 @@ package Core;
 import Modules.Cards.impl.Card;
 import Modules.Piles.iface.IPile;
 import Modules.Player.impl.Player;
+import utils.Color;
 
 import java.io.IOException;
 import java.util.Deque;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class TerminalView implements ITerminalView {
@@ -147,4 +149,9 @@ public class TerminalView implements ITerminalView {
         System.out.println("Error with: " + e.toString());
     }
 
+    @Override
+    public int getIndex() {
+        Scanner sc = new Scanner(System.in);
+        return Integer.parseInt(sc.nextLine());
+    }
 }
