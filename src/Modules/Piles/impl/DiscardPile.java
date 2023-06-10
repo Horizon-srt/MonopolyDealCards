@@ -4,15 +4,16 @@ import Modules.Cards.impl.Card;
 import Modules.Piles.iface.IDiscardPile;
 import utils.Type;
 
+import java.util.LinkedList;
+
 public class DiscardPile implements IDiscardPile {
     private static DiscardPile dp = new DiscardPile();
 
-    private DiscardPile() {}
+    LinkedList<Card> list = new LinkedList<>();
 
     public static DiscardPile getDiscardPile() {
         return dp;
     }
-
 
     @Override
     public Card getCard() {
@@ -21,7 +22,7 @@ public class DiscardPile implements IDiscardPile {
 
     @Override
     public void setCard(Card c) {
-
+        list.add(c);
     }
 
     @Override
@@ -31,7 +32,7 @@ public class DiscardPile implements IDiscardPile {
 
     @Override
     public int size() {
-        return 0;
+        return list.size();
     }
 
     @Override
