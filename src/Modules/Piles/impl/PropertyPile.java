@@ -1,17 +1,14 @@
 package Modules.Piles.impl;
 
-import Core.ITerminalView;
 import Core.TerminalView;
 import Modules.Cards.iface.IPropertyCard;
 import Modules.Cards.impl.Card;
 import Modules.Piles.iface.IPropertyPile;
-import utils.Color;
 
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
-
-import static utils.Type.PROPERTY;
+import java.util.Scanner;
 
 public class PropertyPile implements IPropertyPile {
     private LinkedList<LinkedList<IPropertyCard>> propertyList;
@@ -23,11 +20,15 @@ public class PropertyPile implements IPropertyPile {
 
     @Override
     public void setCard(Card c) {
+        Scanner sc = new Scanner(System.in);
         int index = TerminalView.getTerminalView().getIndex();
+        System.out.println("What's the color of this property pile?");
+        String color = sc.nextLine();
         if (index <= propertyList.size()) {
             LinkedList<IPropertyCard> list = propertyList.get(index-1);
-            //TODO 缺乏判断c颜色是否合规
-            list.add((IPropertyCard) c);
+            if (((IPropertyCard) c).getColor().toString() == color){
+                list.add((IPropertyCard) c);
+            }
         } else {
             LinkedList<IPropertyCard> list = new LinkedList<>();
             list.add((IPropertyCard) c);
@@ -48,9 +49,9 @@ public class PropertyPile implements IPropertyPile {
     public void listCards() {
         Iterator<LinkedList<IPropertyCard>> it = propertyList.iterator();
         int index = 1;
+        int indexx = 1;
         while (it.hasNext()){
             LinkedList<IPropertyCard> list = it.next();
-            int indexx = 1;
             for (IPropertyCard card : list) {
                 System.out.print("Properties"+index+": ");
                 System.out.print("Index: "+indexx+", ");
@@ -78,8 +79,31 @@ public class PropertyPile implements IPropertyPile {
         return null;
     }
 
+    // 使用索引号获取财产堆，返回并删除
+    public LinkedList<IPropertyCard> getProperty(int id){
+        if (id - 1 <= propertyList.size() ){
+            LinkedList<IPropertyCard> list = propertyList.get(id-1);
+            propertyList.remove(id-1);
+            return list;
+        }
+        System.out.println("The index violates the rules");
+        return null;
+    }
+
     @Override
     public boolean isWin() {
+        Scanner sc = new Scanner(System.in);
+        int num = 0;
+        for (LinkedList<IPropertyCard> list : propertyList){
+            System.out.println("What's the color of this list?");
+            String color = sc.nextLine();
+            if (isFull(list, color)) {
+                num++;
+                if (num == 3){
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
@@ -102,21 +126,18 @@ public class PropertyPile implements IPropertyPile {
                 return false;
             }
         }
-        if (list.size() == map.get(color)){
-            return true;
-        }
-        return false;
+        return list.size() == map.get(color);
     }
 
     public void removeCard(Card c){
         Iterator<LinkedList<IPropertyCard>> it = propertyList.iterator();
         while (it.hasNext()){
-            LinkedList list = it.next();
-            Iterator<Card> itt = list.iterator();
+            LinkedList<IPropertyCard> list = it.next();
+            Iterator<IPropertyCard> itt = list.iterator();
             while (itt.hasNext()){
-                Card card = itt.next();
-                if (card.name == c.name){
-                    list.remove(c);
+                IPropertyCard card = itt.next();
+                if (card.getName() == c.name){
+                    list.remove((IPropertyCard) c);
                 }
             }
         }
