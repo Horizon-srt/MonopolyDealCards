@@ -5,6 +5,8 @@ import Core.TerminalView;
 import Modules.Player.impl.Player;
 import utils.Type;
 
+import java.util.ArrayDeque;
+
 public class DebtCollectorCard extends ActionCard{
     public DebtCollectorCard(String name, int value) {
         super(name, value);
@@ -13,7 +15,13 @@ public class DebtCollectorCard extends ActionCard{
     @Override
     public void use(GameController g, Player p) {
         TerminalView tv = g.tv;
-        Player q = tv.getTargetplayer();
+        ArrayDeque<Player> players = new ArrayDeque<>();
+        for (Player player : g.players) {
+            if (player != p) {
+                players.add(player);
+            }
+        }
+        Player q = tv.getTargetplayer(players.toArray(new Player[players.size()]));
         int i = tv.askJustSayNo(q, "DebtCollectorCard");
         if (i > 0) {
             Card justSayNo = p.getHp().getCardById(i);
