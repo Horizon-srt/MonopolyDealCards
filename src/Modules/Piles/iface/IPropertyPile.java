@@ -10,7 +10,7 @@ public interface IPropertyPile extends IPile{
     public boolean isWin();
 
     // 得到财产的房产信息
-    public HashMap<String, Building> getBuilding();
-
+    public HashMap<Integer, Building> getBuilding();
+  
     public int cardSize();
 }
