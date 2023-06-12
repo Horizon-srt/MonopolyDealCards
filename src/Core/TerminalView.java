@@ -148,11 +148,4 @@ public class TerminalView implements ITerminalView {
         System.out.println("Can not find cards config, please check config file in path 'src/config'");
         System.out.println("Error with: " + e.toString());
     }
-
-    @Override
-    public int getIndex() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("In which property pile do you want to add the property?");
-        return Integer.parseInt(sc.nextLine());
-    }
 }
