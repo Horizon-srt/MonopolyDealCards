@@ -1,7 +1,10 @@
 package Modules.Piles.impl;
 
 import Modules.Cards.impl.Card;
+import Modules.Cards.impl.PropertyCard;
+import Modules.Cards.impl.PropertyWildCard;
 import Modules.Piles.iface.IAllPile;
+import utils.Type;
 
 import java.util.Collections;
 import java.util.Iterator;
@@ -47,6 +50,11 @@ public class AllPile implements IAllPile {
             System.out.print("Index: "+index+",  ");
             System.out.print("Name: "+card.name+",  ");
             System.out.print("Value: "+card.value+";  ");
+            if (card instanceof PropertyWildCard) {
+                System.out.print("Color: "+((PropertyWildCard)card).color1+"/"+((PropertyWildCard)card).color2+";  ");
+            } else if (card instanceof PropertyCard) {
+                System.out.print("Color: "+((PropertyCard)card).getColor()+";  ");
+            }
             System.out.println(" ");
             index++;
         }
