@@ -4,15 +4,18 @@ import Core.TerminalView;
 import Modules.Cards.iface.IPropertyCard;
 import Modules.Cards.impl.Card;
 import Modules.Piles.iface.IPropertyPile;
+import utils.Building;
+import utils.Color;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class PropertyPile implements IPropertyPile {
     private LinkedList<LinkedList<IPropertyCard>> propertyList;
-    public PropertyPile() { propertyList = new LinkedList<>(); }
+    private HashMap<Color, Building> buildingMap;
+    public PropertyPile() {
+        propertyList = new LinkedList<>();
+        buildingMap = new HashMap<Color, Building>();
+    }
     @Override
     public Card getCard() {
         return null;
@@ -77,6 +80,11 @@ public class PropertyPile implements IPropertyPile {
             }
         }
         return null;
+    }
+
+    @Override
+    public HashMap<Color, Building> getBuilding(){
+        return buildingMap;
     }
 
     // 使用索引号获取财产堆，返回并删除
