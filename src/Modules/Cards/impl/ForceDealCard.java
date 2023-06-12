@@ -13,6 +13,12 @@ public class ForceDealCard extends ActionCard{
     public void use(GameController g, Player p) {
         TerminalView tv = g.tv;
         Player q = tv.getTargetplayer();
+        int i = tv.askJustSayNo(q, "ForceDealCard");
+        if (i > 0) {
+            Card justSayNo = p.getHp().getCardById(i);
+            g.dp.setCard(justSayNo);
+            return;
+        }
         PropertyCard targetProperty = tv.slyForceDealTargetProperty();
         PropertyCard ownProperty = tv.forceDealOwnProperty();
         q.getPp().removeCard(targetProperty);

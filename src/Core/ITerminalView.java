@@ -12,9 +12,6 @@ public interface ITerminalView {
     // p是收租金的一方，q是付租金的一方,value是租金的值
     public Card[] rent(Player p, Player q,int value);
 
-    // 得到玩家想要加入到对应财产堆的序号
-    public int getIndex();
-
     // 返回 slyCard 或 ForceDeal 或 dealbreaker 或 debt collector 的目标玩家
     public Player getTargetplayer(Player[] player);
 
@@ -29,4 +26,10 @@ public interface ITerminalView {
 
     // justsayno 询问目标玩家是否使用 justsayno 并返回 卡片序号 或 -1
     public int askJustSayNo(Player q, String cardName);
+
+    // 得到玩家想要加入到对应财产堆的序号
+    public int getIndex();
+
+    // 返回用户想要判断对应财产是否满的颜色
+    public String getStringColor();
 }
