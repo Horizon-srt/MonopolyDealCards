@@ -230,16 +230,6 @@ public class TerminalView implements ITerminalView {
     }
 
     @Override
-    public int getIndex() {
-        return 0;
-    }
-
-    @Override
-    public String getStringColor() {
-        return null;
-    }
-
-    @Override
     public Player getTargetplayer(Player[] player) {
         System.out.println("Please select a target player");
         for (int i=0; i<player.length; i++) {

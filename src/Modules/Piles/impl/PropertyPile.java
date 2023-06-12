@@ -29,11 +29,11 @@ public class PropertyPile implements IPropertyPile {
     @Override
     public void setCard(Card c) {
         TerminalView tv = TerminalView.getTerminalView();
-        int index = tv.getIndex();
+        int index = tv.getIndex(propertyList);
         String color = tv.getStringColor();
         if (index <= propertyList.size()) {
             LinkedList<IPropertyCard> list = propertyList.get(index-1);
-            if (((IPropertyCard) c).getColor().toString() == color){
+            if (((IPropertyCard) c).getColor().toString().equals(color)){
                 list.add((IPropertyCard) c);
             }
         } else {
