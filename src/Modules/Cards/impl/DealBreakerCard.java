@@ -3,6 +3,7 @@ package Modules.Cards.impl;
 import Core.GameController;
 import Core.TerminalView;
 import Modules.Cards.iface.IPropertyCard;
+import Modules.Piles.impl.PropertyPile;
 import Modules.Player.impl.Player;
 
 import java.util.ArrayDeque;
@@ -29,6 +30,11 @@ public class DealBreakerCard extends ActionCard{
             g.dp.setCard(justSayNo);
             return;
         }
-        LinkedList<IPropertyCard> property = tv.getProperty();
+        PropertyPile pp = p.getPp();
+        PropertyPile qp = q.getPp();
+        LinkedList<IPropertyCard> property = qp.getProperty(tv.getPropertyIndex());
+        pp.getPropertyList().addLast(property);
+        pp.getBuilding().put(pp.getPropertyList().indexOf(property) + 1, qp.getBuilding().get(tv.getPropertyIndex()));
+        qp.getBuilding().remove(tv.getPropertyIndex());
     }
 }
