@@ -25,8 +25,9 @@ public class BankPile implements IBankPile {
     public void setCard(Card c) {
         if (c.getValue() != 0){
             list.add(c);
+        } else {
+            System.out.println("This card can't join bank!!");
         }
-        System.out.println("This card can't join bank!!");
     }
 
     @Override

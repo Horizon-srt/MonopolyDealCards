@@ -3,6 +3,7 @@ package Core;
 import Modules.Cards.iface.IPropertyCard;
 import Modules.Cards.impl.Card;
 import Modules.Cards.impl.PropertyCard;
+import Modules.Piles.iface.IPile;
 import Modules.Piles.impl.PropertyPile;
 import Modules.Player.impl.Player;
 
@@ -34,7 +35,7 @@ public interface ITerminalView {
     public int getHotelIndex(Player player);
 
     // 得到玩家想要加入到对应财产堆的序号
-    public int getIndex(LinkedList propertyList);
+    public int getIndex(IPile propertyList);
 
     // 返回用户想要判断对应财产是否满的颜色
     public String getStringColor();

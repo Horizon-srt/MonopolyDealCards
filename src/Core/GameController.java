@@ -184,26 +184,29 @@ public class GameController implements IGameController {
             Card c = null;
             switch (opt) {
                 case 'a' -> {
-                    c = tv.selectCard(p.getHp());
+                    c = tv.selectCard(p.getHp(), "Please select a card from your hand cards by index number:");
                     while ((c.getType() != Type.MONEY) && (c.getType() != Type.ACTION)) {
                         tv.wrongCardType();
-                        c = tv.selectCard(p.getHp());
+                        p.getHp().setCard(c);
+                        c = tv.selectCard(p.getHp(), "Please select a card from your hand cards by index number:");
                     }
                     p.getBp().setCard(c);
                 }
                 case 'b' -> {
-                    c = tv.selectCard(p.getHp());
+                    c = tv.selectCard(p.getHp(), "Please select a card from your hand cards by index number:");
                     while (c.getType() != Type.PROPERTY) {
                         tv.wrongCardType();
-                        c = tv.selectCard(p.getHp());
+                        p.getHp().setCard(c);
+                        c = tv.selectCard(p.getHp(), "Please select a card from your hand cards by index number:");
                     }
                     p.getPp().setCard(c);
                 }
                 case 'c' -> {
-                    c = tv.selectCard(p.getHp());
+                    c = tv.selectCard(p.getHp(), "Please select a card from your hand cards by index number:");
                     while (c.getType() != Type.ACTION) {
                         tv.wrongCardType();
-                        c = tv.selectCard(p.getHp());
+                        p.getHp().setCard(c);
+                        c = tv.selectCard(p.getHp(), "Please select a card from your hand cards by index number:");
                     }
                     ((ActionCard) c).use(this, p);
                 }

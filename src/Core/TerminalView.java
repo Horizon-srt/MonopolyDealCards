@@ -120,13 +120,14 @@ public class TerminalView implements ITerminalView {
         return userIn.toCharArray()[0];
     }
 
-    public Card selectCard(IPile pile) {
-        System.out.println("Please select a card from your hand cards by index number:");
+    public Card selectCard(IPile pile, String ask) {
+//        System.out.println("Please select a card from your hand cards by index number:");
+        System.out.println(ask);
         pile.listCards();
         Scanner sc = new Scanner(System.in);
         System.out.print(">");
         String userIn = sc.nextLine();
-        while (!isDigit(userIn) || Integer.parseInt(userIn) <= 0 || Integer.parseInt(userIn) >= pile.size()) {
+        while (!isDigit(userIn) || Integer.parseInt(userIn) <= 0 || Integer.parseInt(userIn) > pile.size()) {
             System.out.println("Invalid index number, please input again");
             System.out.print(">");
             userIn = sc.nextLine();
@@ -230,6 +231,27 @@ public class TerminalView implements ITerminalView {
     }
 
     @Override
+    public int rentPropertyIndex(Player player) {
+        System.out.println("Please select a set of property you want to use for rent");
+        player.getPp().listCards();
+        System.out.print(">");
+        Scanner sc = new Scanner(System.in);
+        String userIn = sc.nextLine();
+        while (!isDigit(userIn) || Integer.parseInt(userIn) <= 0 || Integer.parseInt(userIn) >player.getPp().size()) {
+            System.out.println("Input is not a valid digit!");
+            System.out.print(">");
+            userIn = sc.nextLine();
+        }
+        return Integer.parseInt(userIn);
+    }
+
+    @Override
+    public String rentPropertyColor(Player player) {
+        player.getPp().listCards();
+        return getColor();
+    }
+
+    @Override
     public Player getTargetplayer(Player[] player) {
         System.out.println("Please select a target player");
         for (int i=0; i<player.length; i++) {
@@ -279,20 +301,10 @@ public class TerminalView implements ITerminalView {
         return (PropertyCard) player.getPp().getCardById(Integer.parseInt(userIn));
     }
 
+    // TODO: 等修复
     @Override
-    public LinkedList<IPropertyCard> getProperty(PropertyPile pPile) {
-        System.out.println("Please select a property");
-        pPile.listCards();
-        System.out.print(">");
-        Scanner sc = new Scanner(System.in);
-        String userIn = sc.nextLine();
-        while (!isDigit(userIn) || Integer.parseInt(userIn) <= 0 || Integer.parseInt(userIn) > pPile.size()) {
-            System.out.println("Input is not a valid digit!");
-            System.out.print(">");
-            userIn = sc.nextLine();
-        }
-
-        return pPile.getProperty(Integer.parseInt(userIn));
+    public int getPropertyIndex() {
+        return 0;
     }
 
     @Override
@@ -311,4 +323,62 @@ public class TerminalView implements ITerminalView {
 
         return 0;
     }
+
+    private int inputPropertyParam (IPile pile, String ask) {
+        System.out.println(ask);
+        System.out.println("Your property pile");
+        pile.listCards();
+        System.out.print(">");
+        Scanner sc = new Scanner(System.in);
+        String userIn = sc.nextLine();
+        while (!isDigit(userIn) || Integer.parseInt(userIn) <= 0 || Integer.parseInt(userIn) > pile.size() + 1) {
+            System.out.println("Input is not a valid digit!");
+            System.out.print(">");
+            userIn = sc.nextLine();
+        }
+        return Integer.parseInt(userIn);
+    }
+
+    @Override
+    public int getHouseIndex(Player player) {
+        return inputPropertyParam(player.getPp(), "Please a property set you want to use");
+    }
+
+    @Override
+    public int getHotelIndex(Player player) {
+        return inputPropertyParam(player.getPp(), "Please a property set you want to use");
+    }
+
+    @Override
+    public int getIndex(IPile propertyList) {
+        return inputPropertyParam(propertyList, "Please a property set you want to use");
+    }
+
+    private String getColor() {
+        System.out.println("Please input a color");
+        System.out.print(">");
+        Scanner sc = new Scanner(System.in);
+        String userIn = sc.nextLine();
+        while (true) {
+            if (userIn.equalsIgnoreCase("BROWN")) return "BROWN";
+            if (userIn.equalsIgnoreCase("BLUE")) return "BLUE";
+            if (userIn.equalsIgnoreCase("GREEN")) return "GREEN";
+            if (userIn.equalsIgnoreCase("LIGHT_BLUE")) return "LIGHT_BLUE";
+            if (userIn.equalsIgnoreCase("ORANGE")) return "ORANGE";
+            if (userIn.equalsIgnoreCase("PINK")) return "PINK";
+            if (userIn.equalsIgnoreCase("RAILROAD")) return "RAILROAD";
+            if (userIn.equalsIgnoreCase("RED")) return "RED";
+            if (userIn.equalsIgnoreCase("UTILITY")) return "UTILITY";
+            if (userIn.equalsIgnoreCase("YELLOW")) return "YELLOW";
+            System.out.println("Input is not a valid color");
+            System.out.print(">");
+            userIn = sc.nextLine();
+        }
+    }
+
+    @Override
+    public String getStringColor() {
+        return getColor();
+    }
+
 }
