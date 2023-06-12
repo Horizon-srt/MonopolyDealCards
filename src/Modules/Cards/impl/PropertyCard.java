@@ -39,6 +39,8 @@ public class PropertyCard extends Card implements IPropertyCard {
                 return false;
             }
         } else {
+            if (c1.getColor() == Color.ALL || c2.getColor() == Color.ALL)
+                return true;
             return c1.getColor() == c2.getColor();
         }
     }

@@ -17,6 +17,12 @@ public class ItsMyBirthdayCard extends ActionCard{
         TerminalView tv = g.tv;
         for (Player q : g.players) {
             if (q != p) {
+                int i = tv.askJustSayNo(q, "ItsMyBirthdayCard");
+                if (i > 0) {
+                    Card justSayNo = p.getHp().getCardById(i);
+                    g.dp.setCard(justSayNo);
+                    continue;
+                }
                 for (Card card : tv.rent(p, q, 2)) {
                     if (card.getType() == Type.MONEY || card.getType() == Type.ACTION) {
                         p.getBp().setCard(card);

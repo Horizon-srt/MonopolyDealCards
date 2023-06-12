@@ -14,6 +14,12 @@ public class DebtCollectorCard extends ActionCard{
     public void use(GameController g, Player p) {
         TerminalView tv = g.tv;
         Player q = tv.getTargetplayer();
+        int i = tv.askJustSayNo(q, "DebtCollectorCard");
+        if (i > 0) {
+            Card justSayNo = p.getHp().getCardById(i);
+            g.dp.setCard(justSayNo);
+            return;
+        }
         for (Card card : tv.rent(p, q, 5)) {
             if (card.getType() == Type.MONEY || card.getType() == Type.ACTION) {
                 p.getBp().setCard(card);

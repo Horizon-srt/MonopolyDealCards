@@ -27,5 +27,5 @@ public interface ITerminalView {
     public LinkedList<IPropertyCard> getProperty();
 
     // justsayno 询问目标玩家是否使用 justsayno 并返回 true 或false
-    public boolean askJustSayNo(Player q);
+    public int askJustSayNo(Player q, String cardName);
 }

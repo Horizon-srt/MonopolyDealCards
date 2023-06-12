@@ -15,7 +15,13 @@ public class DealBreakerCard extends ActionCard{
     @Override
     public void use(GameController g, Player p) {
         TerminalView tv = g.tv;
+        Player q = tv.getTargetplayer();
+        int i = tv.askJustSayNo(q, "DealBeakerCard");
+        if (i > 0) {
+            Card justSayNo = p.getHp().getCardById(i);
+            g.dp.setCard(justSayNo);
+            return;
+        }
         LinkedList<IPropertyCard> property = tv.getProperty();
-
     }
 }
