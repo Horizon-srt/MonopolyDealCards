@@ -15,9 +15,19 @@ public class HotelCard extends ActionCard{
     @Override
     public void use(GameController g, Player p) {
         TerminalView tv = g.tv;
-        String color = tv.getStringColor().toUpperCase();
-        for (String a : p.getPp().getBuilding().keySet()){
-            if (a.equals(color) || p.getPp().getBuilding().get(a) == Building.HOUSE){
+        for (Player q : g.players) {
+            if (q != p) {
+                int i = tv.askJustSayNo(q, "ItsMyBirthdayCard");
+                if (i > 0) {
+                    Card justSayNo = p.getHp().getCardById(i);
+                    g.dp.setCard(justSayNo);
+                    return;
+                }
+            }
+        }
+        int index = tv.getHotelIndex();
+        for (int a : p.getPp().getBuilding().keySet()){
+            if (a == index || p.getPp().getBuilding().get(a) == Building.HOUSE){
                 p.getPp().getBuilding().put(a, Building.HOTEL);
             }
         }
