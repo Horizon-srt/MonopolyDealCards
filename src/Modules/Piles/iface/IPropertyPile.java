@@ -11,4 +11,6 @@ public interface IPropertyPile extends IPile{
 
     // 得到财产的房产信息
     public HashMap<Integer, Building> getBuilding();
+  
+    public int cardSize();
 }

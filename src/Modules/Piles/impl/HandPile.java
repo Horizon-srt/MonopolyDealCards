@@ -8,7 +8,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 public class HandPile implements IHandPile {
-    private LinkedList<Card> list;
+    public LinkedList<Card> list;
 
     public HandPile() {
         list = new LinkedList<>();
