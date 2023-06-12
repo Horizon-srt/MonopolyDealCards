@@ -4,14 +4,12 @@ import Modules.Cards.iface.IPropertyCard;
 import Modules.Cards.impl.Card;
 import Modules.Cards.impl.PropertyCard;
 import Modules.Piles.iface.IPile;
+import Modules.Piles.impl.PropertyPile;
 import Modules.Player.impl.Player;
 import utils.Color;
 
 import java.io.IOException;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 public class TerminalView implements ITerminalView {
     private static final TerminalView tv = new TerminalView();
@@ -72,6 +70,7 @@ public class TerminalView implements ITerminalView {
         System.out.println("You did not win this game, select more property to reach the goal!");
     }
 
+    // TODO: 多个输入改为单次询问
     public void dropCard(Player p, GameController g) {
         System.out.println("The number of your hand cards is more than 7. You need to drop some cards to keep the number lower or equals than 7.");
         System.out.println("Your hand card");
@@ -152,6 +151,7 @@ public class TerminalView implements ITerminalView {
         System.out.println("Error with: " + e.toString());
     }
 
+    // TODO: 多个输入改为单次询问
     private boolean checkRentInput(String s, int handPileSize, int propertyPileSize) {
         String[] ss = s.split(" ");
         if (!ss[0].equalsIgnoreCase("h") || !ss[0].equalsIgnoreCase("p")) {
@@ -192,6 +192,7 @@ public class TerminalView implements ITerminalView {
         return allValue;
     }
 
+    // TODO: 多个输入改为单次询问
     @Override
     public Card[] rent(Player p, Player q, int value) {
         System.out.println(q.getName() + ", you need pay rent to " + p.getName() + " " + value + "$");
@@ -246,24 +247,68 @@ public class TerminalView implements ITerminalView {
         return player[Integer.parseInt(userIn)];
     }
 
-
     @Override
-    public PropertyCard slyForceDealTargetProperty() {
-        return null;
+    public PropertyCard slyForceDealTargetProperty(Player player) {
+        System.out.println("Please select a target property from target player");
+        player.getPp().listCards();
+        System.out.print(">");
+        Scanner sc = new Scanner(System.in);
+        String userIn = sc.nextLine();
+        while (!isDigit(userIn) || Integer.parseInt(userIn) <= 0 || Integer.parseInt(userIn) > player.getPp().cardSize()) {
+            System.out.println("Input is not a valid digit!");
+            System.out.print(">");
+            userIn = sc.nextLine();
+        }
+
+        return (PropertyCard) player.getPp().getCardById(Integer.parseInt(userIn));
     }
 
     @Override
-    public PropertyCard forceDealOwnProperty() {
-        return null;
+    public PropertyCard forceDealOwnProperty(Player player) {
+        System.out.println("Please select a property from your property");
+        player.getPp().listCards();
+        System.out.print(">");
+        Scanner sc = new Scanner(System.in);
+        String userIn = sc.nextLine();
+        while (!isDigit(userIn) || Integer.parseInt(userIn) <= 0 || Integer.parseInt(userIn) > player.getPp().cardSize()) {
+            System.out.println("Input is not a valid digit!");
+            System.out.print(">");
+            userIn = sc.nextLine();
+        }
+
+        return (PropertyCard) player.getPp().getCardById(Integer.parseInt(userIn));
     }
 
     @Override
-    public LinkedList<IPropertyCard> getProperty() {
-        return null;
+    public LinkedList<IPropertyCard> getProperty(PropertyPile pPile) {
+        System.out.println("Please select a property");
+        pPile.listCards();
+        System.out.print(">");
+        Scanner sc = new Scanner(System.in);
+        String userIn = sc.nextLine();
+        while (!isDigit(userIn) || Integer.parseInt(userIn) <= 0 || Integer.parseInt(userIn) > pPile.size()) {
+            System.out.println("Input is not a valid digit!");
+            System.out.print(">");
+            userIn = sc.nextLine();
+        }
+
+        return pPile.getProperty(Integer.parseInt(userIn));
     }
 
     @Override
     public int askJustSayNo(Player q, String cardName) {
+        System.out.println("Someone used " + cardName + " on you, do you want use Just Say No? y for yes");
+        System.out.print(">");
+        Scanner sc = new Scanner(System.in);
+        String userIn = sc.nextLine();
+        if (userIn.equalsIgnoreCase("y")) {
+            int index = 1;
+            for (Card c: q.getHp().list) {
+                if (c.name.equalsIgnoreCase("JustSayNo")) return index;
+                index++;
+            }
+        }
+
         return 0;
     }
 }

@@ -91,6 +91,15 @@ public class PropertyPile implements IPropertyPile {
         return buildingMap;
     }
 
+    @Override
+    public int cardSize() {
+        int cardSize = 0;
+        for (LinkedList<IPropertyCard> l: propertyList) {
+            cardSize += l.size();
+        }
+        return cardSize;
+    }
+
     // 使用索引号获取财产堆，返回并删除
     public LinkedList<IPropertyCard> getProperty(int id){
         if (id - 1 <= propertyList.size() ){
