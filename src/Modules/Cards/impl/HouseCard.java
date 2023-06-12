@@ -15,11 +15,21 @@ public class HouseCard extends ActionCard{
     @Override
     public void use(GameController g, Player p) {
         TerminalView tv = g.tv;
-        int index = tv.getIndex();
+        for (Player q : g.players) {
+            if (q != p) {
+                int i = tv.askJustSayNo(q, "ItsMyBirthdayCard");
+                if (i > 0) {
+                    Card justSayNo = p.getHp().getCardById(i);
+                    g.dp.setCard(justSayNo);
+                    return;
+                }
+            }
+        }
+        int index = tv.getHouseIndex();
         String color = tv.getStringColor().toUpperCase();
         boolean isFull = p.getPp().isFull(p.getPp().getProperty(index), color);
         if (isFull) {
-            p.getPp().getBuilding().put(color, Building.HOUSE);
+            p.getPp().getBuilding().put(index, Building.HOUSE);
 //            System.out.println("A house has added into your property!");
         }
     }
