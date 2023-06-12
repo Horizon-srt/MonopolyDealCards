@@ -4,15 +4,18 @@ import Core.TerminalView;
 import Modules.Cards.iface.IPropertyCard;
 import Modules.Cards.impl.Card;
 import Modules.Piles.iface.IPropertyPile;
+import utils.Building;
+import utils.Color;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class PropertyPile implements IPropertyPile {
     private LinkedList<LinkedList<IPropertyCard>> propertyList;
-    public PropertyPile() { propertyList = new LinkedList<>(); }
+    private HashMap<Color, Building> houseMap;
+    public PropertyPile() {
+        propertyList = new LinkedList<>();
+        houseMap = new HashMap<Color, Building>();
+    }
     @Override
     public Card getCard() {
         return null;
@@ -107,6 +110,12 @@ public class PropertyPile implements IPropertyPile {
         return false;
     }
 
+    @Override
+    public HashMap<Color, Building> getHouseMap() {
+        return this.houseMap;
+    }
+
+    // 每个颜色财产堆的数量
     Map<String, Integer> map = Map.of(
             "BROWN",2,
             "BLUE",2,
@@ -119,6 +128,7 @@ public class PropertyPile implements IPropertyPile {
             "UTILITY",2,
             "YELLOW",3);
             
+    // 判断子财产堆是否完整，需传入该财产所属的颜色
     public boolean isFull(LinkedList<IPropertyCard> list, String color) {
         for (IPropertyCard card: list){
             String c = card.getColor().toString();
