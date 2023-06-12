@@ -25,7 +25,7 @@ public class HotelCard extends ActionCard{
                 }
             }
         }
-        int index = tv.getHotelIndex();
+        int index = tv.getHotelIndex(p);
         for (int a : p.getPp().getBuilding().keySet()){
             if (a == index || p.getPp().getBuilding().get(a) == Building.HOUSE){
                 p.getPp().getBuilding().put(a, Building.HOTEL);

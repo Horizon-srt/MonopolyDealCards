@@ -229,13 +229,6 @@ public class TerminalView implements ITerminalView {
     }
 
     @Override
-    public int getIndex() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("In which property pile do you want to add the property?");
-        return Integer.parseInt(sc.nextLine());
-    }
-
-    @Override
     public Player getTargetplayer(Player[] player) {
         System.out.println("Please select a target player");
         for (int i=0; i<player.length; i++) {

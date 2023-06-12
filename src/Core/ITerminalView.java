@@ -28,13 +28,13 @@ public interface ITerminalView {
     public int askJustSayNo(Player q, String cardName);
 
     // House 获取想要将房子添加到财产堆的序号；
-    public int getHouseIndex();
+    public int getHouseIndex(Player player);
 
-    // House 获取想要将酒店添加到财产堆的序号；
-    public int getHotelIndex();
+    // Hotel 获取想要将酒店添加到财产堆的序号；
+    public int getHotelIndex(Player player);
 
     // 得到玩家想要加入到对应财产堆的序号
-    public int getIndex();
+    public int getIndex(LinkedList propertyList);
 
     // 返回用户想要判断对应财产是否满的颜色
     public String getStringColor();

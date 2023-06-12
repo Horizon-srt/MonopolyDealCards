@@ -25,7 +25,7 @@ public class HouseCard extends ActionCard{
                 }
             }
         }
-        int index = tv.getHouseIndex();
+        int index = tv.getHouseIndex(p);
         String color = tv.getStringColor().toUpperCase();
         boolean isFull = p.getPp().isFull(p.getPp().getProperty(index), color);
         if (isFull) {
