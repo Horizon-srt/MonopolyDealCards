@@ -6,7 +6,7 @@ public class NormalPropertyCard extends PropertyCard{
     public Color color;
 
     public NormalPropertyCard(String name, int value, Color color) {
-        super(name, value);
+        super(name, value, color);
         this.color = color;
     }
 }
