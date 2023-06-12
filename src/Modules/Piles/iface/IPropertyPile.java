@@ -10,5 +10,5 @@ public interface IPropertyPile extends IPile{
     public boolean isWin();
 
     // 得到财产的房产信息
-    public HashMap<Color, Building> getBuilding();
+    public HashMap<String, Building> getBuilding();
 }

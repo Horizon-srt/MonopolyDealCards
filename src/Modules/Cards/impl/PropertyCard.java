@@ -5,14 +5,15 @@ import utils.Color;
 import utils.Type;
 
 public class PropertyCard extends Card implements IPropertyCard {
-
-    public PropertyCard(String name, int value) {
+    Color color;
+    public PropertyCard(String name, int value, Color color) {
         super(name, value, Type.PROPERTY);
+        this.color = color;
     }
 
     @Override
     public Color getColor() {
-        return null;
+        return color;
     }
 
     public boolean judgeColar(PropertyCard c1, PropertyCard c2) {
