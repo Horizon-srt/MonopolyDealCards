@@ -11,11 +11,16 @@ import java.util.*;
 
 public class PropertyPile implements IPropertyPile {
     private LinkedList<LinkedList<IPropertyCard>> propertyList;
-    private HashMap<String, Building> buildingMap;
+    private HashMap<Integer, Building> buildingMap;
     public PropertyPile() {
         propertyList = new LinkedList<>();
-        buildingMap = new HashMap<String, Building>();
+        buildingMap = new HashMap<Integer, Building>();
     }
+
+    public LinkedList<LinkedList<IPropertyCard>> getPropertyList() {
+        return propertyList;
+    }
+
     @Override
     public Card getCard() {
         return null;
@@ -82,7 +87,7 @@ public class PropertyPile implements IPropertyPile {
     }
 
     @Override
-    public HashMap<String, Building> getBuilding(){
+    public HashMap<Integer, Building> getBuilding(){
         return buildingMap;
     }
 

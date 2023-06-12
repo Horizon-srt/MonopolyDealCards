@@ -21,15 +21,23 @@ public interface ITerminalView {
     // 返回 ForceDeal 玩家自己想要交换的财产
     public PropertyCard forceDealOwnProperty(Player player);
 
-    // DealBreaker 获取目标财产堆并删除
-    public LinkedList<IPropertyCard> getProperty(PropertyPile pPile);
+    // DealBreaker 获取目标财产堆的序号
+    public int getPropertyIndex();
 
     // justsayno 询问目标玩家是否使用 justsayno 并返回 卡片序号 或 -1
     public int askJustSayNo(Player q, String cardName);
+
+    // House 获取想要将房子添加到财产堆的序号；
+    public int getHouseIndex();
+
+    // House 获取想要将酒店添加到财产堆的序号；
+    public int getHotelIndex();
 
     // 得到玩家想要加入到对应财产堆的序号
     public int getIndex();
 
     // 返回用户想要判断对应财产是否满的颜色
     public String getStringColor();
+
+
 }
