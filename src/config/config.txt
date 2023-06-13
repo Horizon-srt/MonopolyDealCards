@@ -44,12 +44,12 @@
 3 A 3 House
 3 A 4 Hotel
 2 A 1 DoubleTheRent
-2 R 1 Blue/Green BLUE GREEN
-2 R 1 Red/Yellow RED YELLOW
-2 R 1 Pink/Orange PINK ORANGE
-2 R 1 Light_blue/Brown LIGHT_BLUE BROWN
-2 R 1 Railroad/Utility RAILROAD UTILITY
-3 R 3 WildRent ALL ALL
+2 R 1 Rent_Blue/Green BLUE GREEN
+2 R 1 Rent_Red/Yellow RED YELLOW
+2 R 1 Rent_Pink/Orange PINK ORANGE
+2 R 1 Rent_Light_blue/Brown LIGHT_BLUE BROWN
+2 R 1 Rent_Railroad/Utility RAILROAD UTILITY
+3 R 3 Rent_WildRent ALL ALL
 1 M 10 MONEY
 2 M 5 MONEY
 3 M 4 MONEY

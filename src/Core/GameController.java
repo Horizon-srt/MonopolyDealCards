@@ -181,7 +181,10 @@ public class GameController implements IGameController {
         int n = 1;
         while (n <= 3) {
             char opt = tv.getOpt(n);
-            if (opt == 'd') continue;
+            if (opt == 'd') {
+                n++;
+                continue;
+            }
             Card c = null;
             switch (opt) {
                 case 'a' -> {

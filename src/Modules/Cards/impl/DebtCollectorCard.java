@@ -28,7 +28,10 @@ public class DebtCollectorCard extends ActionCard{
             g.dp.setCard(justSayNo);
             return;
         }
-        for (Card card : tv.rent(p, q, 5)) {
+        Card[] rent = tv.rent(p, q, 5);
+        if (rent == null)
+            return;
+        for (Card card : rent) {
             if (card.getType() == Type.MONEY || card.getType() == Type.ACTION) {
                 p.getBp().setCard(card);
                 q.getBp().removeCard(card);
