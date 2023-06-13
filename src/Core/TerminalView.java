@@ -73,27 +73,23 @@ public class TerminalView implements ITerminalView {
         System.out.println("You did not win this game, select more property to reach the goal!");
     }
 
-    // TODO: 多个输入改为单次询问
     public void dropCard(Player p, GameController g) {
         System.out.println("The number of your hand cards is more than 7. You need to drop some cards to keep the number lower or equals than 7.");
         System.out.println("Your hand card");
         p.getHp().listCards();
         while (p.getHp().size() > 7) {
-            System.out.println("Select cards by their index split by space:");
+            System.out.println("Your hand card");
+            p.getHp().listCards();
+            System.out.println("Select cards by their index:");
             Scanner sc = new Scanner(System.in);
             System.out.print(">");
             String userIn = sc.nextLine();
-            String[] cards = userIn.split(" ");
-            for (int i=0; i<cards.length; i++) {
-                String c = cards[i];
-                if (isDigit(c) && Integer.parseInt(c) >= 1 && Integer.parseInt(c) <= p.getHp().size()) {
-                    g.dp.setCard(p.getHp().getCardById(Integer.parseInt(c)));
-                } else {
-                    System.out.println("Invalid index number for the " + i + "th input");
-                }
+            while (!isDigit(userIn) || Integer.parseInt(userIn) <= 0 || Integer.parseInt(userIn) > p.getHp().size()) {
+                System.out.println("Invalid index number!");
+                System.out.print(">");
+                userIn = sc.nextLine();
             }
-            System.out.println("Your hand card:");
-            p.getHp().listCards();
+            g.dp.setCard(p.getHp().getCardById(Integer.parseInt(userIn)));
         }
     }
 
@@ -155,32 +151,29 @@ public class TerminalView implements ITerminalView {
         System.out.println("Error with: " + e.toString());
     }
 
-    // TODO: 多个输入改为单次询问
     private boolean checkRentInput(String s, int handPileSize, int propertyPileSize) {
         String[] ss = s.split(" ");
         if (!ss[0].equalsIgnoreCase("h") || !ss[0].equalsIgnoreCase("p")) {
             System.out.println("Type input wrong!");
             return false;
         }
-        if (ss.length < 2) {
-            System.out.println("Need index params!");
+        if (ss.length != 2) {
+            System.out.println("Only need pile type and a index number");
             return false;
         }
-        for (int i=1; i< ss.length; i++) {
-            if (!isDigit(ss[i])) {
-                System.out.println("The " + i + "th index is not a digit!");
+        if (!isDigit(ss[1])) {
+            System.out.println("The index is not a digit!");
+            return false;
+        }
+        if (ss[0].equalsIgnoreCase("h")) {
+            if (Integer.parseInt(ss[1]) <= 0 || Integer.parseInt(ss[1]) > handPileSize) {
+                System.out.println("The index out of the range of hand pile");
                 return false;
             }
-            if (ss[0].equalsIgnoreCase("h")) {
-                if (Integer.parseInt(ss[i]) <= 0 || Integer.parseInt(ss[i]) > handPileSize) {
-                    System.out.println("The \" + i + \"th index out of the range of hand pile");
-                    return false;
-                }
-            } else {
-                if (Integer.parseInt(ss[i]) <= 0 || Integer.parseInt(ss[i]) > propertyPileSize) {
-                    System.out.println("The \" + i + \"th index out of the range of property pile");
-                    return false;
-                }
+        } else {
+            if (Integer.parseInt(ss[1]) <= 0 || Integer.parseInt(ss[1]) > propertyPileSize) {
+                System.out.println("The index out of the range of property pile");
+                return false;
             }
         }
 
@@ -196,7 +189,6 @@ public class TerminalView implements ITerminalView {
         return allValue;
     }
 
-    // TODO: 多个输入改为单次询问
     @Override
     public Card[] rent(Player p, Player q, int value) {
         System.out.println(q.getName() + ", you need pay rent to " + p.getName() + " " + value + "$");
@@ -204,7 +196,7 @@ public class TerminalView implements ITerminalView {
         q.getHp().listCards();
         System.out.println("Your property pile");
         q.getPp().listCards();
-        System.out.println("Input pile type and indexes for card you choose to use.");
+        System.out.println("Input pile type and index for card you choose to use.");
         System.out.println("h for hand pile, p for property pile, and split by space");
 
         Card[] cardList = new Card[50];
@@ -220,13 +212,11 @@ public class TerminalView implements ITerminalView {
                 userIn = sc.nextLine();
             }
             String[] userInputParam = userIn.split(" ");
-            for (int i=1; i<userInputParam.length; i++) {
-                Card c;
-                if (userInputParam[0].equalsIgnoreCase("h")) c = q.getHp().getCardById(Integer.parseInt(userInputParam[i]));
-                else c = q.getPp().getCardById(Integer.parseInt(userInputParam[i]));
-                cardList[index] = c;
-                index++;
-            }
+            Card c;
+            if (userInputParam[0].equalsIgnoreCase("h")) c = q.getHp().getCardById(Integer.parseInt(userInputParam[1]));
+            else c = q.getPp().getCardById(Integer.parseInt(userInputParam[1]));
+            cardList[index] = c;
+            index++;
             allValue = checkRentValue(cardList);
         }
 
@@ -402,7 +392,5 @@ public class TerminalView implements ITerminalView {
     public String getStringColor() {
         return getColor();
     }
-
-
 
 }
