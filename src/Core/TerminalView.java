@@ -108,10 +108,11 @@ public class TerminalView implements ITerminalView {
         System.out.println("Press 'a' to put Money/Action Cards into your own bank");
         System.out.println("Press 'b' to put Down Properties into your own Collection");
         System.out.println("Press 'c' to play Action Cards into the center");
+        System.out.println("Press 'd' to pass this turn");
         Scanner sc = new Scanner(System.in);
         System.out.print(">");
         String userIn = sc.nextLine();
-        while (!userIn.equalsIgnoreCase("a") && !userIn.equalsIgnoreCase("b") && !userIn.equalsIgnoreCase("c")) {
+        while (!userIn.equalsIgnoreCase("a") && !userIn.equalsIgnoreCase("b") && !userIn.equalsIgnoreCase("c") && !userIn.equalsIgnoreCase("d")) {
             System.out.println("Invalid option character, please input again");
             System.out.print(">");
             userIn = sc.nextLine();
