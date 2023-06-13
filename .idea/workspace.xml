@@ -6,9 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="d329687e-f78e-4227-910b-777609a43178" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/ITerminalView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/ITerminalView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/GameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Core/TerminalView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/TerminalView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modules/Cards/impl/DealBreakerCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modules/Cards/impl/DealBreakerCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modules/Cards/impl/DebtCollectorCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modules/Cards/impl/DebtCollectorCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modules/Cards/impl/ItsMyBirthdayCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modules/Cards/impl/ItsMyBirthdayCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modules/Cards/impl/RentActionCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modules/Cards/impl/RentActionCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modules/Piles/impl/BankPile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modules/Piles/impl/BankPile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modules/Piles/impl/HandPile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modules/Piles/impl/HandPile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modules/Piles/impl/PropertyPile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modules/Piles/impl/PropertyPile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/config.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +60,20 @@
       <recent name="$PROJECT_DIR$/src/Modules/Piles" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="MonopolyDealCards" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="应用程序.Main" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">
@@ -64,5 +84,16 @@
       <updated>1683791224052</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Modules/Cards/impl/ItsMyBirthdayCard.java</url>
+          <line>28</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

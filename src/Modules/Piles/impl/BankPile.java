@@ -48,7 +48,8 @@ public class BankPile implements IBankPile {
         while (it.hasNext()){
             Card card = it.next();
             System.out.print("Index: "+index+",  ");
-//            System.out.print("Name: "+card.name+",  ");
+            System.out.print("Name: "+card.name+",  ");
+            System.out.print("Type: " + card.getType() + ",  ");
             System.out.print("Value: "+card.value+";  ");
             System.out.println(" ");
             index++;
@@ -68,5 +69,13 @@ public class BankPile implements IBankPile {
 
     public void removeCard(Card c){
         list.remove(c);
+    }
+
+    public int getValue() {
+        int value = 0;
+        for (Card card : list){
+            value = value + card.getValue();
+        }
+        return value;
     }
 }

@@ -3,6 +3,7 @@ package Modules.Piles.impl;
 import Core.TerminalView;
 import Modules.Cards.iface.IPropertyCard;
 import Modules.Cards.impl.Card;
+import Modules.Cards.impl.PropertyCard;
 import Modules.Cards.impl.PropertyWildCard;
 import Modules.Piles.iface.IPropertyPile;
 import utils.Building;
@@ -33,10 +34,18 @@ public class PropertyPile implements IPropertyPile {
         String color = tv.getStringColor();
         if (index <= propertyList.size()) {
             LinkedList<IPropertyCard> list = propertyList.get(index-1);
-            if (((IPropertyCard) c).getColor().toString().equals(color)){
-                list.add((IPropertyCard) c);
-                System.out.println("Add a property card into a existed property successfully!");
+            if (c instanceof PropertyWildCard) {
+                if (((PropertyWildCard) c).color1.toString().equals(color) && ((PropertyWildCard) c).color2.toString().equals(color)){
+                    list.add((IPropertyCard) c);
+                    System.out.println("Add a property card into a existed property successfully!");
+                }
+            } else if (c instanceof PropertyCard) {
+                if (((IPropertyCard) c).getColor().toString().equals(color)){
+                    list.add((IPropertyCard) c);
+                    System.out.println("Add a property card into a existed property successfully!");
+                }
             }
+            System.out.println("aaa");
         } else {
             LinkedList<IPropertyCard> list = new LinkedList<>();
             list.add((IPropertyCard) c);
@@ -65,8 +74,13 @@ public class PropertyPile implements IPropertyPile {
                 System.out.print("Properties"+index+": ");
                 System.out.print("Index: "+indexx+", ");
                 System.out.print("Name: "+card.getName()+",  ");
+                System.out.print("Type: " + card.getType() + ",  ");
                 System.out.print("Value: "+card.getValue()+";  ");
-                System.out.print("Color: "+card.getColor()+";  ");
+                if (card instanceof PropertyWildCard) {
+                    System.out.print("Color: "+((PropertyWildCard) card).color1+"/"+((PropertyWildCard) card).color2+";  ");
+                } else {
+                    System.out.print("Color: "+card.getColor()+";  ");
+                }
                 System.out.println(" ");
                 indexx++;
             }
@@ -121,9 +135,12 @@ public class PropertyPile implements IPropertyPile {
             String color = tv.getStringColor();
             if (isFull(list, color)) {
                 num++;
+                System.out.println("This color is full! Congratulation!");
                 if (num == 3){
                     return true;
                 }
+            } else {
+                System.out.println("This color is not full! Keep trying!");
             }
         }
         return false;
@@ -170,5 +187,15 @@ public class PropertyPile implements IPropertyPile {
                 }
             }
         }
+    }
+
+    public int getValue(){
+        int value = 0;
+        for (LinkedList<IPropertyCard> list: propertyList){
+            for (IPropertyCard card: list){
+                value = value + card.getValue();
+            }
+        }
+        return value;
     }
 }

@@ -45,6 +45,7 @@ public class HandPile implements IHandPile {
             Card card = it.next();
             System.out.print("Index: "+index+",  ");
             System.out.print("Name: "+card.name+",  ");
+            System.out.print("Type: " + card.getType() + ",  ");
             System.out.print("Value: "+card.value+";  ");
             if (card instanceof PropertyWildCard) {
                 System.out.print("Color: "+((PropertyWildCard)card).color1+"/"+((PropertyWildCard)card).color2+";  ");
@@ -58,7 +59,7 @@ public class HandPile implements IHandPile {
 
     @Override
     public Card getCardById(int id) {
-        if (id - 1 <= list.size() ){
+        if (id - 1 < list.size() ){
             Card card = list.get(id-1);
             list.remove(id-1);
             return card;

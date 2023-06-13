@@ -152,9 +152,9 @@ public class TerminalView implements ITerminalView {
         System.out.println("Error with: " + e.toString());
     }
 
-    private boolean checkRentInput(String s, int handPileSize, int propertyPileSize) {
+    private boolean checkRentInput(String s, int bankPileSize, int propertyPileSize) {
         String[] ss = s.split(" ");
-        if (!ss[0].equalsIgnoreCase("h") || !ss[0].equalsIgnoreCase("p")) {
+        if (!ss[0].equalsIgnoreCase("b") && !ss[0].equalsIgnoreCase("p")) {
             System.out.println("Type input wrong!");
             return false;
         }
@@ -166,9 +166,9 @@ public class TerminalView implements ITerminalView {
             System.out.println("The index is not a digit!");
             return false;
         }
-        if (ss[0].equalsIgnoreCase("h")) {
-            if (Integer.parseInt(ss[1]) <= 0 || Integer.parseInt(ss[1]) > handPileSize) {
-                System.out.println("The index out of the range of hand pile");
+        if (ss[0].equalsIgnoreCase("b")) {
+            if (Integer.parseInt(ss[1]) <= 0 || Integer.parseInt(ss[1]) > bankPileSize) {
+                System.out.println("The index out of the range of bank pile");
                 return false;
             }
         } else {
@@ -181,10 +181,11 @@ public class TerminalView implements ITerminalView {
         return true;
     }
 
-    private int checkRentValue(Card[] cardList) {
+    private int checkRentValue(Card[] cardList, int size) {
         int allValue = 0;
-        for (Card c: cardList) {
-            allValue += c.getValue();
+        if (cardList.length == 0) return 0;
+        for (int i=0; i<size; i++) {
+            allValue += cardList[i].getValue();
         }
 
         return allValue;
@@ -192,36 +193,40 @@ public class TerminalView implements ITerminalView {
 
     @Override
     public Card[] rent(Player p, Player q, int value) {
+        if (q.getBp().getValue() + q.getPp().getValue() < value) return new Card[0];
+
         System.out.println(q.getName() + ", you need pay rent to " + p.getName() + " " + value + "$");
-        System.out.println("Your hand pile");
-        q.getHp().listCards();
+        System.out.println("Your bank pile");
+        q.getBp().listCards();
         System.out.println("Your property pile");
         q.getPp().listCards();
         System.out.println("Input pile type and index for card you choose to use.");
-        System.out.println("h for hand pile, p for property pile, and split by space");
+        System.out.println("b for bank pile, p for property pile, and split by space");
 
         Card[] cardList = new Card[50];
         int index = 0;
-        int allValue = checkRentValue(cardList);
+        int allValue = 0;
         while (allValue < value) {
             System.out.println("You have choose " + allValue + "$, still need at least " + (value - allValue) + "$");
             System.out.print(">");
             Scanner sc = new Scanner(System.in);
             String userIn = sc.nextLine();
-            while (!checkRentInput(userIn, q.getHp().size(), q.getPp().size())) {
+            while (!checkRentInput(userIn, q.getBp().size(), q.getPp().size())) {
                 System.out.print(">");
                 userIn = sc.nextLine();
             }
             String[] userInputParam = userIn.split(" ");
             Card c;
-            if (userInputParam[0].equalsIgnoreCase("h")) c = q.getHp().getCardById(Integer.parseInt(userInputParam[1]));
+            if (userInputParam[0].equalsIgnoreCase("b")) c = q.getBp().getCardById(Integer.parseInt(userInputParam[1]));
             else c = q.getPp().getCardById(Integer.parseInt(userInputParam[1]));
             cardList[index] = c;
             index++;
-            allValue = checkRentValue(cardList);
+            allValue = checkRentValue(cardList, index);
         }
+        Card[] result = new Card[index];
+        for (int i=0; i<index; i++) result[i] = cardList[i];
 
-        return cardList;
+        return result;
     }
 
     @Override
@@ -273,13 +278,13 @@ public class TerminalView implements ITerminalView {
         System.out.print(">");
         Scanner sc = new Scanner(System.in);
         String userIn = sc.nextLine();
-        while (!isDigit(userIn) || Integer.parseInt(userIn) > player.length) {
+        while (!isDigit(userIn) || Integer.parseInt(userIn) > player.length || Integer.parseInt(userIn) <=0 ) {
             System.out.println("Input is not a valid digit!");
             System.out.print(">");
             userIn = sc.nextLine();
         }
 
-        return player[Integer.parseInt(userIn)];
+        return player[Integer.parseInt(userIn) - 1];
     }
 
     @Override
@@ -322,7 +327,7 @@ public class TerminalView implements ITerminalView {
 
     @Override
     public int askJustSayNo(Player q, String cardName) {
-        System.out.println("Someone used " + cardName + " on you, do you want use Just Say No? y for yes");
+        System.out.println(q.getName() + ", someone used " + cardName + ", do you want use Just Say No? y for yes");
         System.out.print(">");
         Scanner sc = new Scanner(System.in);
         String userIn = sc.nextLine();

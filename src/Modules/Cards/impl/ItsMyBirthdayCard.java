@@ -23,7 +23,10 @@ public class ItsMyBirthdayCard extends ActionCard{
                     g.dp.setCard(justSayNo);
                     continue;
                 }
-                for (Card card : tv.rent(p, q, 2)) {
+                Card[] rent = tv.rent(p, q, 2);
+                if (rent == null || rent.length == 0)
+                    return;
+                for (Card card : rent) {
                     if (card.getType() == Type.MONEY || card.getType() == Type.ACTION) {
                         p.getBp().setCard(card);
                         q.getBp().removeCard(card);

@@ -11,6 +11,7 @@ import utils.Type;
 import java.util.ArrayDeque;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Locale;
 
 public class RentActionCard extends ActionCard {
     public Color color1;
@@ -27,6 +28,8 @@ public class RentActionCard extends ActionCard {
 
     @Override
     public void use(GameController g, Player p) {
+        if (rentNum.size() == 0)
+            initRentNum();
         TerminalView tv = g.tv;
         int flag = tv.doubleRentCardCheck(p);
         if (flag > 0)
@@ -38,9 +41,10 @@ public class RentActionCard extends ActionCard {
             }
         }
         int index = tv.rentPropertyIndex(p);
+        LinkedList<LinkedList<IPropertyCard>> propertyList = p.getPp().getPropertyList();
+        int size = propertyList.get(index - 1).size();
         String color = tv.rentPropertyColor(p);
 
-        int n = tv.rentPropertyIndex(p);
         int money = 0;
         if (color1 == Color.ALL && color2 == Color.ALL) {
             Player targetplayer = tv.getTargetplayer(players.toArray(new Player[players.size()]));
@@ -50,39 +54,27 @@ public class RentActionCard extends ActionCard {
                 g.dp.setCard(justSayNo);
                 return;
             }
-            for (int j = 0; j < targetplayer.getPp().getPropertyList().size(); j++) {
-                LinkedList<IPropertyCard> list = targetplayer.getPp().getPropertyList().get(j);
-                for (IPropertyCard card : list) {
-                    if (card instanceof PropertyWildCard) {
-                        String c1 = ((PropertyWildCard) card).color1.toString();
-                        String c2 = ((PropertyWildCard) card).color2.toString();
-                        if (c1.equals(color) && c2.equals(color)) {
-                            break;
-                        }
-                    }
-                    String c = card.getColor().toString();
-                    if (c.equals("ALL") && c.equals(color)) {
-                        break;
-                    }
-                }
-                Integer m = rentNum.get(color).get(list.size());
-                //加入房子的价格
-                Building building = p.getPp().getBuilding().get(index);
-                if (building == Building.HOTEL) {
-                    m += 7;
-                } else if (building == Building.HOUSE) {
-                    m += 3;
-                }
-                if (flag > 0)
-                    m *= 2;
-                for (Card card : tv.rent(p, targetplayer, m)) {
-                    if (card.getType() == Type.MONEY || card.getType() == Type.ACTION) {
-                        p.getBp().setCard(card);
-                        targetplayer.getBp().removeCard(card);
-                    } else {
-                        p.getPp().setCard(card);
-                        targetplayer.getPp().removeCard(card);
-                    }
+            color = color.toLowerCase();
+            Integer m = rentNum.get(color).get(size);
+            //加入房子的价格
+            Building building = p.getPp().getBuilding().get(index);
+            if (building == Building.HOTEL) {
+                m += 7;
+            } else if (building == Building.HOUSE) {
+                m += 3;
+            }
+            if (flag > 0)
+                m *= 2;
+            Card[] rent = tv.rent(p, targetplayer, m);
+            if (rent == null)
+                return;
+            for (Card card : rent) {
+                if (card.getType() == Type.MONEY || card.getType() == Type.ACTION) {
+                    p.getBp().setCard(card);
+                    targetplayer.getBp().removeCard(card);
+                } else {
+                    p.getPp().setCard(card);
+                    targetplayer.getPp().removeCard(card);
                 }
             }
         } else {
@@ -95,44 +87,31 @@ public class RentActionCard extends ActionCard {
                             g.dp.setCard(justSayNo);
                             continue;
                         }
-                        for (int j = 0; j < targetplayer.getPp().getPropertyList().size(); j++) {
-                            LinkedList<IPropertyCard> list = targetplayer.getPp().getPropertyList().get(j);
-                            for (IPropertyCard card : list) {
-                                if (card instanceof PropertyWildCard) {
-                                    String c1 = ((PropertyWildCard) card).color1.toString();
-                                    String c2 = ((PropertyWildCard) card).color2.toString();
-                                    if (c1.equals(color) && c2.equals(color)) {
-                                        break;
-                                    }
-                                }
-                                String c = card.getColor().toString();
-                                if (c.equals("ALL") && c.equals(color)) {
-                                    break;
-                                }
-                            }
-                            Integer m = rentNum.get(color).get(list.size());
-                            //加入房子的价格
-                            Building building = p.getPp().getBuilding().get(index);
-                            if (building == Building.HOTEL) {
-                                m += 7;
-                            } else if (building == Building.HOUSE) {
-                                m += 3;
-                            }
-                            if (flag > 0)
-                                m *= 2;
-                            for (Card card : tv.rent(p, targetplayer, m)) {
-                                if (card.getType() == Type.MONEY || card.getType() == Type.ACTION) {
-                                    p.getBp().setCard(card);
-                                    targetplayer.getBp().removeCard(card);
-                                } else {
-                                    p.getPp().setCard(card);
-                                    targetplayer.getPp().removeCard(card);
-                                }
+                        color = color.toLowerCase();
+                        Integer m = rentNum.get(color).get(size);
+                        //加入房子的价格
+                        Building building = p.getPp().getBuilding().get(index);
+                        if (building == Building.HOTEL) {
+                            m += 7;
+                        } else if (building == Building.HOUSE) {
+                            m += 3;
+                        }
+                        if (flag > 0)
+                            m *= 2;
+                        Card[] rent = tv.rent(p, targetplayer, m);
+                        if (rent == null)
+                            return;
+                        for (Card card : rent) {
+                            if (card.getType() == Type.MONEY || card.getType() == Type.ACTION) {
+                                p.getBp().setCard(card);
+                                targetplayer.getBp().removeCard(card);
+                            } else {
+                                p.getPp().setCard(card);
+                                targetplayer.getPp().removeCard(card);
                             }
                         }
                     }
                 }
-            } else {
             }
         }
     }
