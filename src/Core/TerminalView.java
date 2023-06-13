@@ -3,7 +3,10 @@ package Core;
 import Modules.Cards.iface.IPropertyCard;
 import Modules.Cards.impl.Card;
 import Modules.Cards.impl.PropertyCard;
+import Modules.Cards.impl.RentActionCard;
+import Modules.Piles.iface.IHandPile;
 import Modules.Piles.iface.IPile;
+import Modules.Piles.impl.HandPile;
 import Modules.Piles.impl.PropertyPile;
 import Modules.Player.impl.Player;
 import utils.Color;
@@ -252,6 +255,25 @@ public class TerminalView implements ITerminalView {
     }
 
     @Override
+    public int doubleRentCardCheck(Player player) {
+        LinkedList<Card> hp = player.getHp().list;
+        int index = 1;
+        for (Card c: hp) {
+            if (c.getName().equalsIgnoreCase("DoubleTheRent")) {
+                break;
+            }
+            index++;
+        }
+        if (index > hp.size()) return 0;
+        System.out.println("Do you want to use double rent card? y for yes");
+        System.out.print(">");
+        Scanner sc = new Scanner(System.in);
+        String userIn = sc.nextLine();
+        if (userIn.equalsIgnoreCase("y")) return index;
+        else return 0;
+    }
+
+    @Override
     public Player getTargetplayer(Player[] player) {
         System.out.println("Please select a target player");
         for (int i=0; i<player.length; i++) {
@@ -301,10 +323,10 @@ public class TerminalView implements ITerminalView {
         return (PropertyCard) player.getPp().getCardById(Integer.parseInt(userIn));
     }
 
-    // TODO: 等修复
     @Override
-    public int getPropertyIndex() {
-        return 0;
+    public int getPropertyIndex(Player q) {
+        System.out.println("Here is player " + q.getName() + "'s property pile");
+        return inputPropertyParam(q.getPp(), "Please select a pile set");
     }
 
     @Override
@@ -380,5 +402,7 @@ public class TerminalView implements ITerminalView {
     public String getStringColor() {
         return getColor();
     }
+
+
 
 }

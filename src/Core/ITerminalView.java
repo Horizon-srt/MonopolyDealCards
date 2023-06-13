@@ -46,4 +46,7 @@ public interface ITerminalView {
     // 返回用户想要收租的财产堆的颜色
     public String rentPropertyColor(Player player);
 
+    // 返回是否使用double, 如果使用则在rentActionCard中将double牌移到弃牌堆
+    public int doubleRentCardCheck(Player player);
+
 }
