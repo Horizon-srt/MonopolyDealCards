@@ -23,7 +23,7 @@ public interface ITerminalView {
     public PropertyCard forceDealOwnProperty(Player player);
 
     // DealBreaker 获取目标财产堆的序号
-    public int getPropertyIndex();
+    public int getPropertyIndex(Player q);
 
     // justsayno 询问目标玩家是否使用 justsayno 并返回 卡片序号 或 -1
     public int askJustSayNo(Player q, String cardName);
