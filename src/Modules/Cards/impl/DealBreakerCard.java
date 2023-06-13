@@ -32,9 +32,10 @@ public class DealBreakerCard extends ActionCard{
         }
         PropertyPile pp = p.getPp();
         PropertyPile qp = q.getPp();
-        LinkedList<IPropertyCard> property = qp.getProperty(tv.getPropertyIndex(q));
+        int index = tv.getPropertyIndex(q);
+        LinkedList<IPropertyCard> property = qp.getProperty(index);
         pp.getPropertyList().addLast(property);
-        pp.getBuilding().put(pp.getPropertyList().indexOf(property) + 1, qp.getBuilding().get(tv.getPropertyIndex()));
-        qp.getBuilding().remove(tv.getPropertyIndex());
+        pp.getBuilding().put(pp.getPropertyList().indexOf(property) + 1, qp.getBuilding().get(index));
+        qp.getBuilding().remove(index);
     }
 }

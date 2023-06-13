@@ -6,13 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d329687e-f78e-4227-910b-777609a43178" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/GameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Core/ITerminalView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/ITerminalView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Core/TerminalView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/TerminalView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modules/Cards/impl/NormalPropertyCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modules/Cards/impl/NormalPropertyCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modules/Piles/impl/BankPile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modules/Piles/impl/BankPile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modules/Piles/impl/HandPile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modules/Piles/impl/HandPile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modules/Piles/impl/PropertyPile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modules/Piles/impl/PropertyPile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modules/Cards/impl/DealBreakerCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modules/Cards/impl/DealBreakerCard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,9 +19,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Interface" />
         <option value="Kotlin Class" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
