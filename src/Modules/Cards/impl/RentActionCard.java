@@ -28,6 +28,9 @@ public class RentActionCard extends ActionCard {
     @Override
     public void use(GameController g, Player p) {
         TerminalView tv = g.tv;
+        int flag = tv.doubleRentCardCheck(p);
+        if (flag > 0)
+            p.getHp().getCardById(flag);
         ArrayDeque<Player> players = new ArrayDeque<>();
         for (Player player : g.players) {
             if (player != p) {
@@ -70,6 +73,8 @@ public class RentActionCard extends ActionCard {
                 } else if (building == Building.HOUSE) {
                     m += 3;
                 }
+                if (flag > 0)
+                    m *= 2;
                 for (Card card : tv.rent(p, targetplayer, m)) {
                     if (card.getType() == Type.MONEY || card.getType() == Type.ACTION) {
                         p.getBp().setCard(card);
@@ -113,6 +118,8 @@ public class RentActionCard extends ActionCard {
                             } else if (building == Building.HOUSE) {
                                 m += 3;
                             }
+                            if (flag > 0)
+                                m *= 2;
                             for (Card card : tv.rent(p, targetplayer, m)) {
                                 if (card.getType() == Type.MONEY || card.getType() == Type.ACTION) {
                                     p.getBp().setCard(card);
