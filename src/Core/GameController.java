@@ -220,4 +220,11 @@ public class GameController implements IGameController {
         }
     }
 
+    public void testDataIn(Player p1, Player p2, TerminalView tv) {
+        this.players.addLast(p1);
+        this.players.addLast(p2);
+        this.tv = tv;
+        this.playerNumber = 2;
+    }
+
 }
