@@ -13,7 +13,7 @@ import java.util.LinkedList;
 public class AllPile implements IAllPile {
     private static AllPile ap = new AllPile();
 
-    LinkedList<Card> list = new LinkedList<>();
+    public LinkedList<Card> list = new LinkedList<>();
 
     public static AllPile getAllPile() {
         return ap;

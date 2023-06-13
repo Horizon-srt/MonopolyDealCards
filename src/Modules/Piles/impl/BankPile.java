@@ -25,6 +25,7 @@ public class BankPile implements IBankPile {
     public void setCard(Card c) {
         if (c.getValue() != 0){
             list.add(c);
+            System.out.println("Add a card into bank successfully!");
         } else {
             System.out.println("This card can't join bank!!");
         }

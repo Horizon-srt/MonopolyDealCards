@@ -35,11 +35,13 @@ public class PropertyPile implements IPropertyPile {
             LinkedList<IPropertyCard> list = propertyList.get(index-1);
             if (((IPropertyCard) c).getColor().toString().equals(color)){
                 list.add((IPropertyCard) c);
+                System.out.println("Add a property card into a existed property successfully!");
             }
         } else {
             LinkedList<IPropertyCard> list = new LinkedList<>();
             list.add((IPropertyCard) c);
             propertyList.add(list);
+            System.out.println("Add a property card as a new property successfully!");
         }
     }
 
@@ -107,7 +109,7 @@ public class PropertyPile implements IPropertyPile {
             propertyList.remove(id-1);
             return list;
         }
-//        System.out.println("The index violates the rules");
+        System.out.println("The index violates the rules");
         return null;
     }
 
