@@ -181,6 +181,7 @@ public class GameController implements IGameController {
         int n = 1;
         while (n <= 3) {
             char opt = tv.getOpt(n);
+            if (opt == 'd') continue;
             Card c = null;
             switch (opt) {
                 case 'a' -> {
@@ -210,6 +211,7 @@ public class GameController implements IGameController {
                     }
                     ((ActionCard) c).use(this, p);
                 }
+                default -> {}
             }
             n++;
         }
