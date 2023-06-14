@@ -34,6 +34,7 @@ public class Test {
         player1 = new Player("Test player1");
         player2 = new Player("Test player2");
         initial();
+
         System.out.println("In ap1:");
         ap1.listCards();
         System.out.println("In ap2:");
@@ -53,11 +54,14 @@ public class Test {
 
         g.testDataIn(player1, player2, tv);
         while (true) {
-            tv.startTurn(player1);
+            Player p = g.players.removeFirst();
+            tv.startTurn(p);
             System.out.println("You can select a operation to test this game");
             System.out.println("Press 'a' to put Money/Action Cards into your own bank");
             System.out.println("Press 'b' to put Down Properties into your own Collection");
             System.out.println("Press 'c' to play Action Cards into the center");
+            System.out.println("Press 'e' to end the test");
+            System.out.println("Press other things to skip this turn");
             System.out.println("Press 'w' to say win");
             System.out.println("Press other character to exit");
             Scanner sc = new Scanner(System.in);
@@ -65,47 +69,47 @@ public class Test {
             Card c;
             if (userIn.equalsIgnoreCase("a")) {
                 try {
-                    c = tv.selectCard(player1.getHp(), "Please select a card from your hand cards by index number:");
+                    c = tv.selectCard(p.getHp(), "Please select a card from your hand cards by index number:");
                     while ((c.getType() != Type.MONEY) && (c.getType() != Type.ACTION)) {
                         tv.wrongCardType();
-                        player1.getHp().setCard(c);
-                        c = tv.selectCard(player1.getHp(), "Please select a card from your hand cards by index number:");
+                        p.getHp().setCard(c);
+                        c = tv.selectCard(p.getHp(), "Please select a card from your hand cards by index number:");
                     }
-                    player1.getBp().setCard(c);
+                    p.getBp().setCard(c);
                     System.out.println("Test success!!! \n");
                 } catch (Error e) {
                     System.out.println(e.toString());
                 }
             } else if (userIn.equalsIgnoreCase("b")) {
                 try {
-                    c = tv.selectCard(player1.getHp(), "Please select a card from your hand cards by index number:");
+                    c = tv.selectCard(p.getHp(), "Please select a card from your hand cards by index number:");
                     while (c.getType() != Type.PROPERTY) {
                         tv.wrongCardType();
-                        player1.getHp().setCard(c);
-                        c = tv.selectCard(player1.getHp(), "Please select a card from your hand cards by index number:");
+                        p.getHp().setCard(c);
+                        c = tv.selectCard(p.getHp(), "Please select a card from your hand cards by index number:");
                     }
-                    player1.getPp().setCard(c);
+                    p.getPp().setCard(c);
                     System.out.println("Test success!!! \n");
                 } catch (Error e) {
                     System.out.println(e.toString());
                 }
             } else if (userIn.equalsIgnoreCase("c")) {
                 try {
-                    c = tv.selectCard(player1.getHp(), "Please select a card from your hand cards by index number:");
+                    c = tv.selectCard(p.getHp(), "Please select a card from your hand cards by index number:");
                     while (c.getType() != Type.ACTION) {
                         tv.wrongCardType();
-                        player1.getHp().setCard(c);
-                        c = tv.selectCard(player1.getHp(), "Please select a card from your hand cards by index number:");
+                        p.getHp().setCard(c);
+                        c = tv.selectCard(p.getHp(), "Please select a card from your hand cards by index number:");
                     }
-                    ((ActionCard) c).use(g, player1);
+                    ((ActionCard) c).use(g, p);
                     System.out.println("Test success!!! \n");
                 } catch (Error e) {
                     System.out.println(e.toString());
                 }
             } else if (userIn.equalsIgnoreCase("w")) {
                 try {
-                    if (player1.getPp().isWin()) {
-                        tv.win(player1);
+                    if (p.getPp().isWin()) {
+                        tv.win(p);
                         break;
                     } else {
                         tv.notWin();
@@ -114,9 +118,10 @@ public class Test {
                 } catch (Error e) {
                     System.out.println(e.toString());
                 }
-            } else {
+            } else if (userIn.equalsIgnoreCase("e")) {
                 break;
             }
+            g.players.addLast(p);
         }
 
     }
