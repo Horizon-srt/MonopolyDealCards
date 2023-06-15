@@ -9,6 +9,12 @@ import Modules.Player.impl.Player;
 import java.util.ArrayDeque;
 import java.util.LinkedList;
 
+/**
+ * Obtain a complete set of properties for a player's designated color set,
+ * including the houses and hotels above, which can be placed in a bank or used as their own properties.
+ * If the designated player does not have a complete set of properties,
+ * this card is invalid and enters the discard state
+ */
 public class DealBreakerCard extends ActionCard{
     public DealBreakerCard(String name, int value) {
         super(name, value);

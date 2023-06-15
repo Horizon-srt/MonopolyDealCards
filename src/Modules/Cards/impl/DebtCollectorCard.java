@@ -7,6 +7,9 @@ import utils.Type;
 
 import java.util.ArrayDeque;
 
+/**
+ * Request 5M from a player
+ */
 public class DebtCollectorCard extends ActionCard{
     public DebtCollectorCard(String name, int value) {
         super(name, value);

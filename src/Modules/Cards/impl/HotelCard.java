@@ -7,6 +7,12 @@ import utils.Building;
 
 import java.util.Scanner;
 
+/**
+ * Add this card to the set of property that owns the house,
+ * resulting in a 4M increase in rent (i.e. a 7M increase in both the house and hotel),
+ * and cannot be added to railways and public utilities.
+ * Each property has a maximum of one room and one hotel
+ */
 public class HotelCard extends ActionCard{
     public HotelCard(String name, int value) {
         super(name, value);

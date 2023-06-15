@@ -13,6 +13,9 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Locale;
 
+/**
+ * Collect rental fees from designated players for items of designated colors and brands they own
+ */
 public class RentActionCard extends ActionCard {
     public Color color1;
     public Color color2;

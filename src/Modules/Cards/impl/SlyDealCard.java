@@ -6,6 +6,11 @@ import Modules.Player.impl.Player;
 
 import java.util.ArrayDeque;
 
+/**
+ * Stealing a piece of property from another player,
+ * and unable to steal one piece of the complete set of property.
+ * It can be added to one's own properties or deposited into a bank.
+ */
 public class SlyDealCard extends ActionCard{
     public SlyDealCard(String name, int value) {
         super(name, value);

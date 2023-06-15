@@ -2,6 +2,9 @@ package Modules.Cards.impl;
 
 import utils.Color;
 
+/**
+ * Normal property card
+ */
 public class NormalPropertyCard extends PropertyCard{
     public Color color;
 

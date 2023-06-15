@@ -6,6 +6,10 @@ import Modules.Player.impl.Player;
 
 import java.util.ArrayDeque;
 
+/**
+ * Swap one of the other players' property cards with one of your property cards,
+ * and the resulting card can also be deposited in the bank
+ */
 public class ForceDealCard extends ActionCard{
     public ForceDealCard(String name, int value) {
         super(name, value);

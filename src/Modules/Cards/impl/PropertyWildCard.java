@@ -2,6 +2,9 @@ package Modules.Cards.impl;
 
 import utils.Color;
 
+/**
+ * Proper wild card
+ */
 public class PropertyWildCard extends PropertyCard {
     public Color color1;
 

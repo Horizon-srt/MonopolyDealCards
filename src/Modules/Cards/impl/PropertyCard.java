@@ -4,6 +4,9 @@ import Modules.Cards.iface.IPropertyCard;
 import utils.Color;
 import utils.Type;
 
+/**
+ * Property card
+ */
 public class PropertyCard extends Card implements IPropertyCard {
     Color color;
     public PropertyCard(String name, int value, Color color) {

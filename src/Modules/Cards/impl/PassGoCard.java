@@ -6,6 +6,9 @@ import Modules.Piles.impl.AllPile;
 import Modules.Piles.impl.HandPile;
 import Modules.Player.impl.Player;
 
+/**
+ * Get 2 more cards from the card pile
+ */
 public class PassGoCard extends ActionCard {
     public PassGoCard(String name, int value) {
         super(name, value);

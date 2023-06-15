@@ -7,6 +7,9 @@ import Modules.Piles.impl.BankPile;
 import Modules.Player.impl.Player;
 import utils.Type;
 
+/**
+ * Request 2M per player from all players
+ */
 public class ItsMyBirthdayCard extends ActionCard{
     public ItsMyBirthdayCard(String name, int value) {
         super(name, value);
