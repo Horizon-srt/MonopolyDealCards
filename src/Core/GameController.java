@@ -11,6 +11,12 @@ import java.util.ArrayDeque;
 import java.util.HashMap;
 
 public class GameController implements IGameController {
+    /*
+     * This class contains controller for the whole game
+     * All logic code was writen here
+     * Includes a terminalview, a card pile for all cards, a card pile discard
+     * Also contains player list and player number
+     */
     public TerminalView tv;
 
     public AllPile ap;
@@ -23,16 +29,19 @@ public class GameController implements IGameController {
 
     private static final GameController g = new GameController();
 
+    // initial ap, dp, players
     private GameController() {
         this.ap = AllPile.getAllPile();
         this.dp = DiscardPile.getDiscardPile();
         this.players = new ArrayDeque<Player>();
     }
 
+    // use Singleton Pattern, return the only entity g
     public static GameController getGame() {
         return g;
     }
 
+    // start the game, use initial , then read players, and finally play the game
     public void start(TerminalView tv) {
         this.tv = tv;
         initial();
@@ -45,6 +54,7 @@ public class GameController implements IGameController {
         // amount type value name (attributes)
         String filePath = System.getProperty("user.dir") + "/src/config/config.txt";
         String encoding = "utf-8";
+        // make sure there exist the file and can be read for the game
         try {
             File file = new File(filePath);
             InputStreamReader read = new InputStreamReader(new FileInputStream(file), encoding);
@@ -57,14 +67,15 @@ public class GameController implements IGameController {
                 }
                 l = br.readLine();
             }
+            br.close();
         } catch (IOException e) {
             tv.wrongFile(e);
         }
         ap.arrangement();
-        tv.getRules();
     }
 
     private Card createCard(String[] args) {
+        // create the card according to the params from the config file
         HashMap<String, Color> hm = new HashMap<>();
         hm.put("BROWN", Color.BROWN);
         hm.put("BLUE", Color.BLUE);
@@ -132,22 +143,27 @@ public class GameController implements IGameController {
     }
 
     private void readPlayer() {
+        // raed players use terminal
         playerNumber = tv.getPlayers(players);
     }
 
     public void getCards(Player p, AllPile pile, int cardNumber) {
+        // set a number of cards from all pile to the player
         for (int j=0; j<cardNumber; j++) {
             p.getHp().setCard(pile.getCard());
         }
     }
 
     private void play() {
+        // the whole logic for this game
+        // initial first 5 cards
         for (int i=0; i<playerNumber; i++) {
             Player p = players.removeFirst();
             getCards(p, ap, 5);
             players.addLast(p);
         }
 
+        // take turns for players
         while (true) {
             Player p = players.removeFirst();
             if (p.getHp().size() == 0) {
@@ -156,8 +172,10 @@ public class GameController implements IGameController {
                 getCards(p, ap, 2);
             }
 
+            // ask for a operation
             playerOperation(p);
 
+            // check whether the player is win
             if (tv.sayWin()) {
                 if (p.getPp().isWin()) {
                     tv.win(p);
@@ -167,6 +185,7 @@ public class GameController implements IGameController {
                 }
             }
 
+            // drop cards
             if (p.getHp().size() > 7) {
                 tv.dropCard(p, this);
             }
@@ -178,6 +197,7 @@ public class GameController implements IGameController {
     private void playerOperation(Player p) {
         tv.startTurn(p);
 
+        // 3 times to play a card
         int n = 1;
         while (n <= 3) {
             char opt = tv.getOpt(n);
@@ -188,6 +208,7 @@ public class GameController implements IGameController {
             Card c = null;
             switch (opt) {
                 case 'a' -> {
+                    // "a" operation
                     c = tv.selectCard(p.getHp(), "Please select a card from your hand cards by index number:");
                     while ((c.getType() != Type.MONEY) && (c.getType() != Type.ACTION)) {
                         tv.wrongCardType();
@@ -197,6 +218,7 @@ public class GameController implements IGameController {
                     p.getBp().setCard(c);
                 }
                 case 'b' -> {
+                    // "b" operation
                     c = tv.selectCard(p.getHp(), "Please select a card from your hand cards by index number:");
                     while (c.getType() != Type.PROPERTY) {
                         tv.wrongCardType();
@@ -206,6 +228,7 @@ public class GameController implements IGameController {
                     p.getPp().setCard(c);
                 }
                 case 'c' -> {
+                    // "c" operation
                     c = tv.selectCard(p.getHp(), "Please select a card from your hand cards by index number:");
                     while (c.getType() != Type.ACTION) {
                         tv.wrongCardType();
@@ -221,6 +244,7 @@ public class GameController implements IGameController {
     }
 
     public void testDataIn(Player p1, Player p2, TerminalView tv) {
+        // only for test
         this.players.addLast(p1);
         this.players.addLast(p2);
         this.tv = tv;
