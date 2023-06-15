@@ -11,7 +11,9 @@ import utils.Building;
 import java.util.*;
 
 public class PropertyPile implements IPropertyPile {
+    // the list store the list of property cards
     private LinkedList<LinkedList<IPropertyCard>> propertyList;
+    // the map of buildings
     private HashMap<Integer, Building> buildingMap;
     public PropertyPile() {
         propertyList = new LinkedList<>();
@@ -146,6 +148,7 @@ public class PropertyPile implements IPropertyPile {
         return false;
     }
 
+    // the map of full condition
     Map<String, Integer> map = Map.of(
             "BROWN",2,
             "BLUE",2,
@@ -157,7 +160,8 @@ public class PropertyPile implements IPropertyPile {
             "RED",3,
             "UTILITY",2,
             "YELLOW",3);
-            
+
+    // judge the property whether is full
     public boolean isFull(LinkedList<IPropertyCard> list, String color) {
         for (IPropertyCard card: list){
             if (card instanceof PropertyWildCard) {
@@ -175,6 +179,7 @@ public class PropertyPile implements IPropertyPile {
         return list.size() == map.get(color);
     }
 
+    // remove a card
     public void removeCard(Card c){
         Iterator<LinkedList<IPropertyCard>> it = propertyList.iterator();
         while (it.hasNext()){

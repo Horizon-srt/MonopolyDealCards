@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+// This class is responsible for the content of the hand pile function
 public class HandPile implements IHandPile {
     public LinkedList<Card> list;
 
