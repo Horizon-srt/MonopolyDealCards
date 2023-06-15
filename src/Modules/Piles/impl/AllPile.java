@@ -10,11 +10,15 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+// This class is responsible for the content of the library function
 public class AllPile implements IAllPile {
+    // This part uses the singleton pattern
     private static AllPile ap = new AllPile();
 
+    // The list to store all the information of the card
     public LinkedList<Card> list = new LinkedList<>();
 
+    // return the allPile
     public static AllPile getAllPile() {
         return ap;
     }

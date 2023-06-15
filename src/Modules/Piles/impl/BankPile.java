@@ -7,7 +7,10 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+// This class is responsible for the content of the bank function
 public class BankPile implements IBankPile {
+
+    // The list stores all the cards in the bank for each player
     private LinkedList<Card> list;
 
     public BankPile() {
