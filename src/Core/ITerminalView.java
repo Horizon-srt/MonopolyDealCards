@@ -1,15 +1,17 @@
 package Core;
 
-import Modules.Cards.iface.IPropertyCard;
 import Modules.Cards.impl.Card;
 import Modules.Cards.impl.PropertyCard;
 import Modules.Piles.iface.IPile;
-import Modules.Piles.impl.PropertyPile;
 import Modules.Player.impl.Player;
 
-import java.util.LinkedList;
-
 public interface ITerminalView {
+    /*
+     * only interfaces for modules
+     * for convinent, we use Chinese, and didn't set some of the terminal view
+     * methods here
+     */
+
     // p是收租金的一方，q是付租金的一方,value是租金的值
     public Card[] rent(Player p, Player q,int value);
 

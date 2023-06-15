@@ -1,28 +1,25 @@
 package Core;
 
-import Modules.Cards.iface.IPropertyCard;
 import Modules.Cards.impl.Card;
 import Modules.Cards.impl.PropertyCard;
-import Modules.Cards.impl.RentActionCard;
-import Modules.Piles.iface.IHandPile;
 import Modules.Piles.iface.IPile;
-import Modules.Piles.impl.HandPile;
-import Modules.Piles.impl.PropertyPile;
 import Modules.Player.impl.Player;
-import utils.Color;
-
 import java.io.IOException;
 import java.util.*;
 
 public class TerminalView implements ITerminalView {
+    /*
+     * a terminal I/O for the game, normally as a view in MVC patten
+     * not special for any of them, so only gives simple description
+     */
+
     private static final TerminalView tv = new TerminalView();
+
     private TerminalView() {}
+
+    // use Singleton Pattern
     public static TerminalView getTerminalView() {
         return tv;
-    }
-
-    public void getRules() {
-        System.out.println("Rules:");
     }
 
     public int getPlayers(Deque<Player> players) {
@@ -44,6 +41,7 @@ public class TerminalView implements ITerminalView {
             players.addLast(new Player(userIn));
             System.out.println("New player " + userIn + " added!");
         }
+        sc.close();
 
         return playerNumber;
     }
@@ -53,6 +51,8 @@ public class TerminalView implements ITerminalView {
         Scanner sc = new Scanner(System.in);
         System.out.print(">");
         String userIn = sc.nextLine();
+        sc.close();
+
         return userIn.equalsIgnoreCase("y");
     }
 
@@ -61,6 +61,8 @@ public class TerminalView implements ITerminalView {
         Scanner sc = new Scanner(System.in);
         System.out.print(">");
         String userIn = sc.nextLine();
+        sc.close();
+
         return userIn.equalsIgnoreCase("y");
     }
 
@@ -74,6 +76,7 @@ public class TerminalView implements ITerminalView {
     }
 
     public void dropCard(Player p, GameController g) {
+        // need while() to get drop cards
         System.out.println("The number of your hand cards is more than 7. You need to drop some cards to keep the number lower or equals than 7.");
         System.out.println("Your hand card");
         p.getHp().listCards();
@@ -90,6 +93,7 @@ public class TerminalView implements ITerminalView {
                 userIn = sc.nextLine();
             }
             g.dp.setCard(p.getHp().getCardById(Integer.parseInt(userIn)));
+            sc.close();
         }
     }
 
@@ -117,11 +121,12 @@ public class TerminalView implements ITerminalView {
             System.out.print(">");
             userIn = sc.nextLine();
         }
+        sc.close();
+
         return userIn.toCharArray()[0];
     }
 
     public Card selectCard(IPile pile, String ask) {
-//        System.out.println("Please select a card from your hand cards by index number:");
         System.out.println(ask);
         pile.listCards();
         Scanner sc = new Scanner(System.in);
@@ -132,10 +137,13 @@ public class TerminalView implements ITerminalView {
             System.out.print(">");
             userIn = sc.nextLine();
         }
+        sc.close();
+
         return pile.getCardById(Integer.parseInt(userIn));
     }
 
     public boolean isDigit(String s) {
+        // a tool method for test whether s is a number
         char[] chars = s.toCharArray();
         for (char aChar : chars) {
             if (!Character.isDigit(aChar)) return false;
@@ -153,6 +161,7 @@ public class TerminalView implements ITerminalView {
     }
 
     private boolean checkRentInput(String s, int bankPileSize, int propertyPileSize) {
+        // a check method for rent input
         String[] ss = s.split(" ");
         if (!ss[0].equalsIgnoreCase("b") && !ss[0].equalsIgnoreCase("p")) {
             System.out.println("Type input wrong!");
@@ -182,6 +191,7 @@ public class TerminalView implements ITerminalView {
     }
 
     private int checkRentValue(Card[] cardList, int size) {
+        // a tool methof for check rent value
         int allValue = 0;
         if (cardList.length == 0) return 0;
         for (int i=0; i<size; i++) {
@@ -193,6 +203,8 @@ public class TerminalView implements ITerminalView {
 
     @Override
     public Card[] rent(Player p, Player q, int value) {
+        // deal rent input and return cards for renter
+
         if (q.getBp().getValue() + q.getPp().getValue() < value) return new Card[0];
 
         System.out.println(q.getName() + ", you need pay rent to " + p.getName() + " " + value + "$");
@@ -215,6 +227,7 @@ public class TerminalView implements ITerminalView {
                 System.out.print(">");
                 userIn = sc.nextLine();
             }
+            sc.close();
             String[] userInputParam = userIn.split(" ");
             Card c;
             if (userInputParam[0].equalsIgnoreCase("b")) c = q.getBp().getCardById(Integer.parseInt(userInputParam[1]));
@@ -241,6 +254,8 @@ public class TerminalView implements ITerminalView {
             System.out.print(">");
             userIn = sc.nextLine();
         }
+        sc.close();
+
         return Integer.parseInt(userIn);
     }
 
@@ -265,6 +280,7 @@ public class TerminalView implements ITerminalView {
         System.out.print(">");
         Scanner sc = new Scanner(System.in);
         String userIn = sc.nextLine();
+        sc.close();
         if (userIn.equalsIgnoreCase("y")) return index;
         else return 0;
     }
@@ -283,6 +299,7 @@ public class TerminalView implements ITerminalView {
             System.out.print(">");
             userIn = sc.nextLine();
         }
+        sc.close();
 
         return player[Integer.parseInt(userIn) - 1];
     }
@@ -299,6 +316,7 @@ public class TerminalView implements ITerminalView {
             System.out.print(">");
             userIn = sc.nextLine();
         }
+        sc.close();
 
         return (PropertyCard) player.getPp().getCardById(Integer.parseInt(userIn));
     }
@@ -315,6 +333,7 @@ public class TerminalView implements ITerminalView {
             System.out.print(">");
             userIn = sc.nextLine();
         }
+        sc.close();
 
         return (PropertyCard) player.getPp().getCardById(Integer.parseInt(userIn));
     }
@@ -329,20 +348,22 @@ public class TerminalView implements ITerminalView {
     public int askJustSayNo(Player q, String cardName) {
         System.out.println(q.getName() + ", someone used " + cardName + ", do you want use Just Say No? y for yes");
         System.out.print(">");
-        Scanner sc = new Scanner(System.in);
-        String userIn = sc.nextLine();
-        if (userIn.equalsIgnoreCase("y")) {
-            int index = 1;
-            for (Card c: q.getHp().list) {
-                if (c.name.equalsIgnoreCase("JustSayNo")) return index;
-                index++;
+        try (Scanner sc = new Scanner(System.in)) {
+            String userIn = sc.nextLine();
+            if (userIn.equalsIgnoreCase("y")) {
+                int index = 1;
+                for (Card c: q.getHp().list) {
+                    if (c.name.equalsIgnoreCase("JustSayNo")) return index;
+                    index++;
+                }
             }
+            sc.close();
         }
-
         return 0;
     }
 
     private int inputPropertyParam (IPile pile, String ask) {
+        // reuse this method in getHouseIndex, getHotelIndex, getIndex
         System.out.println(ask);
         System.out.println("Your property pile");
         pile.listCards();
@@ -354,6 +375,7 @@ public class TerminalView implements ITerminalView {
             System.out.print(">");
             userIn = sc.nextLine();
         }
+        sc.close();
         return Integer.parseInt(userIn);
     }
 
@@ -373,24 +395,26 @@ public class TerminalView implements ITerminalView {
     }
 
     private String getColor() {
+        // get a correct color
         System.out.println("Please input a color");
         System.out.print(">");
-        Scanner sc = new Scanner(System.in);
-        String userIn = sc.nextLine();
-        while (true) {
-            if (userIn.equalsIgnoreCase("BROWN")) return "BROWN";
-            if (userIn.equalsIgnoreCase("BLUE")) return "BLUE";
-            if (userIn.equalsIgnoreCase("GREEN")) return "GREEN";
-            if (userIn.equalsIgnoreCase("LIGHT_BLUE")) return "LIGHT_BLUE";
-            if (userIn.equalsIgnoreCase("ORANGE")) return "ORANGE";
-            if (userIn.equalsIgnoreCase("PINK")) return "PINK";
-            if (userIn.equalsIgnoreCase("RAILROAD")) return "RAILROAD";
-            if (userIn.equalsIgnoreCase("RED")) return "RED";
-            if (userIn.equalsIgnoreCase("UTILITY")) return "UTILITY";
-            if (userIn.equalsIgnoreCase("YELLOW")) return "YELLOW";
-            System.out.println("Input is not a valid color");
-            System.out.print(">");
-            userIn = sc.nextLine();
+        try (Scanner sc = new Scanner(System.in)) {
+            String userIn = sc.nextLine();
+            while (true) {
+                if (userIn.equalsIgnoreCase("BROWN")) return "BROWN";
+                if (userIn.equalsIgnoreCase("BLUE")) return "BLUE";
+                if (userIn.equalsIgnoreCase("GREEN")) return "GREEN";
+                if (userIn.equalsIgnoreCase("LIGHT_BLUE")) return "LIGHT_BLUE";
+                if (userIn.equalsIgnoreCase("ORANGE")) return "ORANGE";
+                if (userIn.equalsIgnoreCase("PINK")) return "PINK";
+                if (userIn.equalsIgnoreCase("RAILROAD")) return "RAILROAD";
+                if (userIn.equalsIgnoreCase("RED")) return "RED";
+                if (userIn.equalsIgnoreCase("UTILITY")) return "UTILITY";
+                if (userIn.equalsIgnoreCase("YELLOW")) return "YELLOW";
+                System.out.println("Input is not a valid color");
+                System.out.print(">");
+                userIn = sc.nextLine();
+            }
         }
     }
 
