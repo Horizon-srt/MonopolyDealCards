@@ -41,7 +41,6 @@ public class TerminalView implements ITerminalView {
             players.addLast(new Player(userIn));
             System.out.println("New player " + userIn + " added!");
         }
-        sc.close();
 
         return playerNumber;
     }
@@ -51,7 +50,6 @@ public class TerminalView implements ITerminalView {
         Scanner sc = new Scanner(System.in);
         System.out.print(">");
         String userIn = sc.nextLine();
-        sc.close();
 
         return userIn.equalsIgnoreCase("y");
     }
@@ -61,7 +59,6 @@ public class TerminalView implements ITerminalView {
         Scanner sc = new Scanner(System.in);
         System.out.print(">");
         String userIn = sc.nextLine();
-        sc.close();
 
         return userIn.equalsIgnoreCase("y");
     }
@@ -93,7 +90,6 @@ public class TerminalView implements ITerminalView {
                 userIn = sc.nextLine();
             }
             g.dp.setCard(p.getHp().getCardById(Integer.parseInt(userIn)));
-            sc.close();
         }
     }
 
@@ -121,7 +117,6 @@ public class TerminalView implements ITerminalView {
             System.out.print(">");
             userIn = sc.nextLine();
         }
-        sc.close();
 
         return userIn.toCharArray()[0];
     }
@@ -137,7 +132,6 @@ public class TerminalView implements ITerminalView {
             System.out.print(">");
             userIn = sc.nextLine();
         }
-        sc.close();
 
         return pile.getCardById(Integer.parseInt(userIn));
     }
@@ -227,7 +221,6 @@ public class TerminalView implements ITerminalView {
                 System.out.print(">");
                 userIn = sc.nextLine();
             }
-            sc.close();
             String[] userInputParam = userIn.split(" ");
             Card c;
             if (userInputParam[0].equalsIgnoreCase("b")) c = q.getBp().getCardById(Integer.parseInt(userInputParam[1]));
@@ -254,7 +247,6 @@ public class TerminalView implements ITerminalView {
             System.out.print(">");
             userIn = sc.nextLine();
         }
-        sc.close();
 
         return Integer.parseInt(userIn);
     }
@@ -280,7 +272,6 @@ public class TerminalView implements ITerminalView {
         System.out.print(">");
         Scanner sc = new Scanner(System.in);
         String userIn = sc.nextLine();
-        sc.close();
         if (userIn.equalsIgnoreCase("y")) return index;
         else return 0;
     }
@@ -299,7 +290,6 @@ public class TerminalView implements ITerminalView {
             System.out.print(">");
             userIn = sc.nextLine();
         }
-        sc.close();
 
         return player[Integer.parseInt(userIn) - 1];
     }
@@ -316,7 +306,6 @@ public class TerminalView implements ITerminalView {
             System.out.print(">");
             userIn = sc.nextLine();
         }
-        sc.close();
 
         return (PropertyCard) player.getPp().getCardById(Integer.parseInt(userIn));
     }
@@ -333,7 +322,6 @@ public class TerminalView implements ITerminalView {
             System.out.print(">");
             userIn = sc.nextLine();
         }
-        sc.close();
 
         return (PropertyCard) player.getPp().getCardById(Integer.parseInt(userIn));
     }
@@ -357,7 +345,6 @@ public class TerminalView implements ITerminalView {
                     index++;
                 }
             }
-            sc.close();
         }
         return 0;
     }
@@ -375,7 +362,6 @@ public class TerminalView implements ITerminalView {
             System.out.print(">");
             userIn = sc.nextLine();
         }
-        sc.close();
         return Integer.parseInt(userIn);
     }
 
