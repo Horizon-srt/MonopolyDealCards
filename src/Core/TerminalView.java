@@ -185,7 +185,7 @@ public class TerminalView implements ITerminalView {
     }
 
     private int checkRentValue(Card[] cardList, int size) {
-        // a tool methof for check rent value
+        // a tool method for check rent value
         int allValue = 0;
         if (cardList.length == 0) return 0;
         for (int i=0; i<size; i++) {
@@ -336,14 +336,13 @@ public class TerminalView implements ITerminalView {
     public int askJustSayNo(Player q, String cardName) {
         System.out.println(q.getName() + ", someone used " + cardName + ", do you want use Just Say No? y for yes");
         System.out.print(">");
-        try (Scanner sc = new Scanner(System.in)) {
-            String userIn = sc.nextLine();
-            if (userIn.equalsIgnoreCase("y")) {
-                int index = 1;
-                for (Card c: q.getHp().list) {
-                    if (c.name.equalsIgnoreCase("JustSayNo")) return index;
-                    index++;
-                }
+        Scanner sc = new Scanner(System.in);
+        String userIn = sc.nextLine();
+        if (userIn.equalsIgnoreCase("y")) {
+            int index = 1;
+            for (Card c : q.getHp().list) {
+                if (c.name.equalsIgnoreCase("JustSayNo")) return index;
+                index++;
             }
         }
         return 0;
@@ -384,24 +383,24 @@ public class TerminalView implements ITerminalView {
         // get a correct color
         System.out.println("Please input a color");
         System.out.print(">");
-        try (Scanner sc = new Scanner(System.in)) {
-            String userIn = sc.nextLine();
-            while (true) {
-                if (userIn.equalsIgnoreCase("BROWN")) return "BROWN";
-                if (userIn.equalsIgnoreCase("BLUE")) return "BLUE";
-                if (userIn.equalsIgnoreCase("GREEN")) return "GREEN";
-                if (userIn.equalsIgnoreCase("LIGHT_BLUE")) return "LIGHT_BLUE";
-                if (userIn.equalsIgnoreCase("ORANGE")) return "ORANGE";
-                if (userIn.equalsIgnoreCase("PINK")) return "PINK";
-                if (userIn.equalsIgnoreCase("RAILROAD")) return "RAILROAD";
-                if (userIn.equalsIgnoreCase("RED")) return "RED";
-                if (userIn.equalsIgnoreCase("UTILITY")) return "UTILITY";
-                if (userIn.equalsIgnoreCase("YELLOW")) return "YELLOW";
-                System.out.println("Input is not a valid color");
-                System.out.print(">");
-                userIn = sc.nextLine();
-            }
+        Scanner sc = new Scanner(System.in);
+        String userIn = sc.nextLine();
+        while (true) {
+            if (userIn.equalsIgnoreCase("BROWN")) return "BROWN";
+            if (userIn.equalsIgnoreCase("BLUE")) return "BLUE";
+            if (userIn.equalsIgnoreCase("GREEN")) return "GREEN";
+            if (userIn.equalsIgnoreCase("LIGHT_BLUE")) return "LIGHT_BLUE";
+            if (userIn.equalsIgnoreCase("ORANGE")) return "ORANGE";
+            if (userIn.equalsIgnoreCase("PINK")) return "PINK";
+            if (userIn.equalsIgnoreCase("RAILROAD")) return "RAILROAD";
+            if (userIn.equalsIgnoreCase("RED")) return "RED";
+            if (userIn.equalsIgnoreCase("UTILITY")) return "UTILITY";
+            if (userIn.equalsIgnoreCase("YELLOW")) return "YELLOW";
+            System.out.println("Input is not a valid color");
+            System.out.print(">");
+            userIn = sc.nextLine();
         }
+
     }
 
     @Override
