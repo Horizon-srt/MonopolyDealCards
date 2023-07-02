@@ -53,6 +53,8 @@ public class Test {
         System.out.println("If they all have 108 cards with no order, that means correct \n");
 
         g.testDataIn(player1, player2, tv);
+        Scanner sc = new Scanner(System.in);
+
         while (true) {
             Player p = g.players.removeFirst();
             tv.startTurn(p);
@@ -64,7 +66,6 @@ public class Test {
             System.out.println("Press other things to skip this turn");
             System.out.println("Press 'w' to say win");
             System.out.println("Press other character to exit");
-            Scanner sc = new Scanner(System.in);
             String userIn = sc.nextLine();
             Card c;
             if (userIn.equalsIgnoreCase("a")) {

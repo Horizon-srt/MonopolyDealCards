@@ -37,7 +37,7 @@ public class PropertyPile implements IPropertyPile {
         if (index <= propertyList.size()) {
             LinkedList<IPropertyCard> list = propertyList.get(index-1);
             if (c instanceof PropertyWildCard) {
-                if (((PropertyWildCard) c).color1.toString().equals(color) && ((PropertyWildCard) c).color2.toString().equals(color)){
+                if (((PropertyWildCard) c).color1.toString().equals(color) || ((PropertyWildCard) c).color2.toString().equals(color) || ((PropertyWildCard) c).color2.toString().equals("ALL")){
                     list.add((IPropertyCard) c);
                     System.out.println("Add a property card into a existed property successfully!");
                 }

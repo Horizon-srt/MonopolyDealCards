@@ -67,7 +67,6 @@ public class GameController implements IGameController {
                 }
                 l = br.readLine();
             }
-            br.close();
         } catch (IOException e) {
             tv.wrongFile(e);
         }
